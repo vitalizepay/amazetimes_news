@@ -527,7 +527,8 @@
     <nav class="main-nav">
         <div class="container">
             <ul id="nav-menu">
-                <li><a href="#" onclick="filterCategory('all'); return false;">முகப்பு</a></li>
+                <li><a href="index.html" onclick="filterCategory('all');">முகப்பு</a></li>
+                <li><a href="list.html">தொகுதிகள் பட்டியல்</a></li>
                 <li><a href="#" onclick="filterCategory('tamil-nadu'); return false;">தமிழ்நாடு</a></li>
                 <li><a href="#" onclick="filterCategory('india'); return false;">இந்தியா</a></li>
                 <li><a href="#" onclick="filterCategory('world'); return false;">உலகம்</a></li>
@@ -1037,6 +1038,11 @@
         function filterCategory(catId) {
             window.scrollTo(0,0);
             if (catId === 'all') {
+                if(document.getElementById('home-view').style.display === 'none') {
+                     // If on list.html, we might want to redirect. But for now this logic works for single page.
+                     // Since list.html is a separate page, clicking home there goes to index.html.
+                     // This JS is mainly for index.html
+                }
                 clearSearch(); // Resets to home view
                 return;
             }
