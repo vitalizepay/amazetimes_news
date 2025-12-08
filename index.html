@@ -58,6 +58,7 @@
             max-width: 100%;
             height: auto;
             display: block;
+            background-color: #eee; /* Placeholder bg while loading */
         }
 
         /* Utility Classes */
@@ -587,7 +588,7 @@
             <div class="sidebar-widget">
                 <h3 class="section-title" style="font-size: 1.2rem; border-left-width: 3px;">சிறப்பு கட்டுரை</h3>
                 <div class="news-card" style="box-shadow: none; border: 1px solid #eee;">
-                    <img src="https://via.placeholder.com/400x250/b71c1c/ffffff?text=Special+Article" alt="Special">
+                    <img src="https://loremflickr.com/600/400/meditation,peace?lock=200" alt="Special" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=News';">
                     <div class="card-body" style="padding: 10px 0;">
                         <span class="tag">வாழ்க்கை முறை</span>
                         <h4 style="font-size: 1rem;">மன அழுத்தம் குறைய தினமும் இதை செய்யுங்கள் - நிபுணர்கள் அறிவுரை.</h4>
@@ -640,6 +641,7 @@
         /**
          * MOCK DATA
          * Real-world style Tamil news content.
+         * Using LoremFlickr with locks for consistent, realistic imagery.
          */
         const newsData = [
             {
@@ -648,7 +650,7 @@
                 category: "tamil-nadu",
                 categoryLabel: "தமிழ்நாடு",
                 summary: "சென்னையில் மெட்ரோ ரயில் 2-ம் கட்ட பணிகள் தீவிரமடைந்துள்ள நிலையில், அடையாறு பகுதியில் போக்குவரத்து மாற்றம் செய்யப்பட்டுள்ளது.",
-                image: "https://via.placeholder.com/600x400/333333/ffffff?text=Chennai+Metro",
+                image: "https://loremflickr.com/600/400/train,metro?lock=10",
                 publishedAt: "2025-12-08 09:30",
                 isBreaking: true
             },
@@ -658,7 +660,7 @@
                 category: "india",
                 categoryLabel: "இந்தியா",
                 summary: "இந்திய விண்வெளி ஆராய்ச்சி மையம் இன்று காலை முக்கிய சோதனையை வெற்றிகரமாக நடத்தியது.",
-                image: "https://via.placeholder.com/600x400/1a237e/ffffff?text=ISRO+Rocket",
+                image: "https://loremflickr.com/600/400/rocket,space?lock=20",
                 publishedAt: "2025-12-08 08:45",
                 isBreaking: true
             },
@@ -668,7 +670,7 @@
                 category: "politics",
                 categoryLabel: "அரசியல்",
                 summary: "தமிழக வெற்றிக் கழகத்தின் முதல் மாநில மாநாடு இன்று விக்கிரவாண்டியில் பிரம்மாண்டமாக தொடங்கியது.",
-                image: "https://via.placeholder.com/600x400/b71c1c/ffffff?text=Politics+Vijay",
+                image: "https://loremflickr.com/600/400/crowd,speech?lock=30",
                 publishedAt: "2025-12-08 10:15",
                 isBreaking: true
             },
@@ -678,7 +680,7 @@
                 category: "business",
                 categoryLabel: "தொழில்",
                 summary: "கடந்த சில நாட்களாக ஏறுமுகத்தில் இருந்த தங்கம் விலை இன்று சற்றே குறைந்துள்ளது. இல்லத்தரசிகள் மகிழ்ச்சி.",
-                image: "https://via.placeholder.com/600x400/ffbf00/000000?text=Gold+Price",
+                image: "https://loremflickr.com/600/400/gold,jewelry?lock=40",
                 publishedAt: "2025-12-08 07:00",
                 isBreaking: false
             },
@@ -688,7 +690,7 @@
                 category: "sports",
                 categoryLabel: "விளையாட்டு",
                 summary: "மும்பை அணியிலிருந்து விலகிய ரோஹித் சர்மா, சென்னை சூப்பர் கிங்ஸ் அணியில் இணைய வாய்ப்புள்ளதாக தகவல்கள் வெளியாகியுள்ளன.",
-                image: "https://via.placeholder.com/600x400/ffff00/000000?text=IPL+Cricket",
+                image: "https://loremflickr.com/600/400/cricket,stadium?lock=50",
                 publishedAt: "2025-12-07 22:30",
                 isBreaking: false
             },
@@ -698,7 +700,7 @@
                 category: "tech",
                 categoryLabel: "தொழில்நுட்பம்",
                 summary: "விவசாயிகளின் வருமானத்தை பெருக்க AI தொழில்நுட்பத்தை பயன்படுத்த தமிழக அரசு முடிவு செய்துள்ளது.",
-                image: "https://via.placeholder.com/600x400/2e7d32/ffffff?text=AI+Farming",
+                image: "https://loremflickr.com/600/400/agriculture,drone?lock=60",
                 publishedAt: "2025-12-07 18:00",
                 isBreaking: false
             },
@@ -708,7 +710,7 @@
                 category: "world",
                 categoryLabel: "உலகம்",
                 summary: "அமெரிக்கா மற்றும் ஐரோப்பிய நாடுகளில் பொருளாதார வளர்ச்சி குறைந்து வருவதாக உலக வங்கி அறிக்கை.",
-                image: "https://via.placeholder.com/600x400/455a64/ffffff?text=World+Economy",
+                image: "https://loremflickr.com/600/400/stockmarket,chart?lock=70",
                 publishedAt: "2025-12-07 16:45",
                 isBreaking: false
             },
@@ -718,7 +720,7 @@
                 category: "cinema",
                 categoryLabel: "சினிமா",
                 summary: "நெல்சன் திலீப்குமார் இயக்கத்தில் ரஜினிகாந்த் நடிக்கும் ஜெயிலர் 2 படத்தின் பூஜை குறித்த தகவல் வெளியானது.",
-                image: "https://via.placeholder.com/600x400/000000/ffffff?text=Cinema+Rajini",
+                image: "https://loremflickr.com/600/400/cinema,theater?lock=80",
                 publishedAt: "2025-12-07 14:20",
                 isBreaking: false
             },
@@ -728,7 +730,7 @@
                 category: "lifestyle",
                 categoryLabel: "வாழ்க்கை முறை",
                 summary: "உடல் பருமன் மற்றும் இதய நோய்களை தவிர்க்க தினமும் அரை மணி நேரம் நடப்பது அவசியம் என மருத்துவர்கள் கூறுகின்றனர்.",
-                image: "https://via.placeholder.com/600x400/81c784/000000?text=Health+Walking",
+                image: "https://loremflickr.com/600/400/walking,park?lock=90",
                 publishedAt: "2025-12-07 06:30",
                 isBreaking: false
             },
@@ -738,7 +740,7 @@
                 category: "spirituality",
                 categoryLabel: "ஆன்மிகம்",
                 summary: "திருப்பதி கோவிலில் நேற்று ஒரே நாளில் உண்டியல் காணிக்கை 5 கோடியை தாண்டியது.",
-                image: "https://via.placeholder.com/600x400/ff9800/ffffff?text=Temple+Tirupati",
+                image: "https://loremflickr.com/600/400/temple,india?lock=100",
                 publishedAt: "2025-12-07 09:00",
                 isBreaking: false
             },
@@ -748,7 +750,7 @@
                 category: "tamil-nadu",
                 categoryLabel: "தமிழ்நாடு",
                 summary: "சென்னை, திருவள்ளூர், காஞ்சிபுரம், செங்கல்பட்டு மாவட்டங்களில் கனமழை பெய்ய வாய்ப்பு.",
-                image: "https://via.placeholder.com/600x400/607d8b/ffffff?text=Rain+Alert",
+                image: "https://loremflickr.com/600/400/rain,storm?lock=110",
                 publishedAt: "2025-12-08 11:00",
                 isBreaking: true
             },
@@ -758,7 +760,7 @@
                 category: "tech",
                 categoryLabel: "தொழில்நுட்பம்",
                 summary: "சமூக வலைளமான எக்ஸ் தளத்தில் வீடியோ காலிங் வசதியை மேம்படுத்தி எலான் மஸ்க் அறிவிப்பு.",
-                image: "https://via.placeholder.com/600x400/000000/ffffff?text=Tech+X",
+                image: "https://loremflickr.com/600/400/smartphone,app?lock=120",
                 publishedAt: "2025-12-08 05:00",
                 isBreaking: false
             },
@@ -768,7 +770,7 @@
                 category: "sports",
                 categoryLabel: "விளையாட்டு",
                 summary: "பிசிசிஐ செயலாளர் ஜெய் ஷா முக்கிய ஆலோசனை. கம்பீர் பெயர் பரிசீலனையில்.",
-                image: "https://via.placeholder.com/600x400/1565c0/ffffff?text=Cricket+Coach",
+                image: "https://loremflickr.com/600/400/cricket,team?lock=130",
                 publishedAt: "2025-12-06 20:00",
                 isBreaking: false
             },
@@ -778,7 +780,7 @@
                 category: "spirituality",
                 categoryLabel: "ஆன்மிகம்",
                 summary: "தினமும் சூரிய நமஸ்காரம் செய்வது உடல் மற்றும் மன ஆரோக்கியத்திற்கு சிறந்தது.",
-                image: "https://via.placeholder.com/600x400/ffcc80/000000?text=Yoga",
+                image: "https://loremflickr.com/600/400/yoga,nature?lock=140",
                 publishedAt: "2025-12-06 07:00",
                 isBreaking: false
             },
@@ -788,7 +790,7 @@
                 category: "cinema",
                 categoryLabel: "சினிமா",
                 summary: "மணிரத்னம் இயக்கத்தில் கமல் நடிக்கும் படத்தின் படப்பிடிப்பு செர்பியாவில் நிறைவடைந்தது.",
-                image: "https://via.placeholder.com/600x400/5d4037/ffffff?text=Cinema+Kamal",
+                image: "https://loremflickr.com/600/400/filming,camera?lock=150",
                 publishedAt: "2025-12-08 10:45",
                 isBreaking: false
             }
@@ -822,7 +824,7 @@
 
         // Generate Time Ago string
         function getTimeAgo(dateString) {
-            // Simplified logic for demo, returning raw string in real app usually
+            // Simplified logic for demo
             const d = new Date(dateString);
             return `${d.getDate()}/${d.getMonth()+1} - ${d.getHours()}:${d.getMinutes() < 10 ? '0'+d.getMinutes() : d.getMinutes()}`;
         }
@@ -830,6 +832,12 @@
         /**
          * RENDERING LOGIC
          */
+
+        // Function to handle image errors
+        function getImgTag(item, height="200px") {
+             // Basic error handling using onerror to fallback
+            return `<img src="${item.image}" alt="${item.title}" style="height: ${height};" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=News';">`;
+        }
 
         // 1. Render Hero Section (Top 1 main + 3 side)
         function renderHero() {
@@ -842,7 +850,7 @@
 
             let html = `
                 <div class="featured-card">
-                    <img src="${mainNews.image}" alt="${mainNews.title}">
+                    <img src="${mainNews.image}" alt="${mainNews.title}" style="height: 300px;" onerror="this.onerror=null;this.src='https://via.placeholder.com/600x400?text=News';">
                     <div class="content">
                         <span class="tag">${mainNews.categoryLabel}</span>
                         <h2>${mainNews.title}</h2>
@@ -856,7 +864,7 @@
             subNews.forEach(item => {
                 html += `
                     <div class="sub-hero-item">
-                        <img src="${item.image}" alt="${item.title}">
+                        <img src="${item.image}" alt="${item.title}" style="height: 80px;" onerror="this.onerror=null;this.src='https://via.placeholder.com/100?text=News';">
                         <div>
                             <span class="tag" style="font-size:0.7rem">${item.categoryLabel}</span>
                             <h3><a href="#">${item.title}</a></h3>
@@ -878,7 +886,7 @@
 
             container.innerHTML = itemsToShow.map(item => `
                 <div class="latest-item">
-                    <img src="${item.image}" alt="${item.title}">
+                    <img src="${item.image}" alt="${item.title}" style="height: 70px;" onerror="this.onerror=null;this.src='https://via.placeholder.com/100?text=News';">
                     <div class="info">
                         <span class="tag">${item.categoryLabel}</span>
                         <h3><a href="#">${item.title}</a></h3>
@@ -918,7 +926,7 @@
                             <div class="news-grid">
                                 ${catNews.map(item => `
                                     <div class="news-card">
-                                        <img src="${item.image}" alt="${item.title}">
+                                        <img src="${item.image}" alt="${item.title}" style="height: 180px;" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x200?text=News';">
                                         <div class="card-body">
                                             <h3><a href="#">${item.title}</a></h3>
                                             <p>${item.summary}</p>
@@ -979,7 +987,7 @@
             } else {
                 resultsGrid.innerHTML = results.map(item => `
                     <div class="news-card">
-                        <img src="${item.image}" alt="${item.title}">
+                        <img src="${item.image}" alt="${item.title}" style="height: 180px;" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x200?text=News';">
                         <div class="card-body">
                             <span class="tag">${item.categoryLabel}</span>
                             <h3><a href="#">${item.title}</a></h3>
@@ -1026,7 +1034,7 @@
             } else {
                 resultsGrid.innerHTML = filtered.map(item => `
                     <div class="news-card">
-                        <img src="${item.image}" alt="${item.title}">
+                        <img src="${item.image}" alt="${item.title}" style="height: 180px;" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x200?text=News';">
                         <div class="card-body">
                             <h3><a href="#">${item.title}</a></h3>
                             <p>${item.summary}</p>
