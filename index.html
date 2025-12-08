@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amazetimes - அமேஸ் டைம்ஸ் | உண்மை செய்தி, நேர்க்கண் பார்வை</title>
     <meta name="description" content="அமேஸ் டைம்ஸ் - நம்பகமான, துல்லியமான, புது தலைமுறை தமிழ் செய்தி தளம். தமிழ்நாடு, இந்தியா, உலகம், சினிமா, விளையாட்டு செய்திகள் உடனுக்குடன்.">
+    <link rel="icon" href="logo.png" type="image/png">
     
     <!-- Google Fonts for better Tamil typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -148,20 +149,40 @@
             gap: 15px;
         }
 
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
         .logo h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--primary-color);
             line-height: 1;
         }
 
         .logo p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-light);
-            margin-top: 5px;
+            margin-top: 2px;
+            font-weight: 600;
         }
 
         .search-bar {
             display: flex;
+            margin-top: 10px;
         }
 
         .search-bar input {
@@ -457,9 +478,9 @@
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .logo h1 { font-size: 2rem; }
+            .logo h1 { font-size: 1.8rem; }
             .header-content { flex-direction: column; align-items: flex-start; }
-            .search-bar { width: 100%; margin-top: 10px; }
+            .search-bar { width: 100%; margin-top: 15px; }
             .search-bar input { width: 100%; }
             nav.main-nav ul { overflow-x: auto; flex-wrap: nowrap; }
             nav.main-nav a { white-space: nowrap; }
@@ -488,9 +509,12 @@
         <div class="container header-content">
             <div class="logo">
                 <a href="index.html">
-                    <h1>அமேஸ் டைம்ஸ்</h1>
+                    <img src="logo.png" alt="Amazetimes Logo">
+                    <div class="logo-text">
+                        <h1>அமேஸ் டைம்ஸ்</h1>
+                        <p>உண்மை செய்தி, நேர்க்கண் பார்வை</p>
+                    </div>
                 </a>
-                <p>உண்மை செய்தி, நேர்க்கண் பார்வை</p>
             </div>
             <div class="search-bar">
                 <input type="text" id="search-input" placeholder="செய்திகளை தேடுக...">
