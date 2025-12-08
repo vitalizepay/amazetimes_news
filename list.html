@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>தமிழ்நாடு சட்டமன்றத் தொகுதிகள்</title>
+    <title>தமிழ்நாடு சட்டமன்றத் தொகுதிகள் மற்றும் எம்.எல்.ஏ.க்கள்</title>
     <style>
         * {
             margin: 0;
@@ -20,7 +20,7 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             background-color: white;
             border-radius: 15px;
@@ -58,6 +58,40 @@
         .info-box h3 {
             color: #1e3c72;
             margin-bottom: 10px;
+        }
+        
+        .party-summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px;
+            padding: 15px;
+            background-color: #f0f8ff;
+            border-radius: 10px;
+            justify-content: space-around;
+        }
+        
+        .party-card {
+            flex: 1;
+            min-width: 200px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dmk-card {
+            background: linear-gradient(135deg, #FF0000, #FF6600);
+        }
+        
+        .aiadmk-card {
+            background: linear-gradient(135deg, #008000, #00AA00);
+        }
+        
+        .other-card {
+            background: linear-gradient(135deg, #663399, #8A2BE2);
         }
         
         .legend {
@@ -117,16 +151,50 @@
             background-color: #e8f4ff;
         }
         
-        .sc-reserved {
-            background-color: #ffeaa7;
+        /* Party-based coloring */
+        .dmk-row {
+            background-color: rgba(255, 0, 0, 0.1) !important;
         }
         
-        .st-reserved {
-            background-color: #a5d6a7;
+        .aiadmk-row {
+            background-color: rgba(0, 128, 0, 0.1) !important;
         }
         
-        .no-reservation {
-            background-color: #e3f2fd;
+        .other-row {
+            background-color: rgba(102, 51, 153, 0.1) !important;
+        }
+        
+        .dmk-row:hover {
+            background-color: rgba(255, 0, 0, 0.2) !important;
+        }
+        
+        .aiadmk-row:hover {
+            background-color: rgba(0, 128, 0, 0.2) !important;
+        }
+        
+        .other-row:hover {
+            background-color: rgba(102, 51, 153, 0.2) !important;
+        }
+        
+        .party-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .dmk-badge {
+            background-color: #FF0000;
+        }
+        
+        .aiadmk-badge {
+            background-color: #008000;
+        }
+        
+        .other-badge {
+            background-color: #663399;
         }
         
         .filter-container {
@@ -142,12 +210,23 @@
             color: #1e3c72;
         }
         
-        select {
+        select, button {
             padding: 8px 15px;
             border-radius: 5px;
             border: 1px solid #ccc;
             background-color: white;
             font-size: 1rem;
+        }
+        
+        button {
+            background-color: #1e3c72;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        
+        button:hover {
+            background-color: #2a5298;
         }
         
         .counter {
@@ -157,6 +236,39 @@
             border-radius: 10px;
             text-align: center;
             font-weight: bold;
+            color: #1e3c72;
+        }
+        
+        .mla-details {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f0f8ff;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .mla-details.active {
+            display: block;
+        }
+        
+        .mla-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .mla-card {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mla-card h4 {
+            margin-bottom: 10px;
             color: #1e3c72;
         }
         
@@ -188,19 +300,38 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
+            
+            .mla-card {
+                min-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>தமிழ்நாடு சட்டமன்றத் தொகுதிகள்</h1>
-            <p class="subtitle">மாவட்டம் மற்றும் மக்களவைத் தொகுதி வாரியாகப் பட்டியல்</p>
+            <h1>தமிழ்நாடு சட்டமன்றத் தொகுதிகள் மற்றும் எம்.எல்.ஏ.க்கள்</h1>
+            <p class="subtitle">திமுக, அதிமுக மற்றும் பிற கட்சி எம்.எல்.ஏ.க்கள் - 2021 தேர்தல் முடிவுகள்</p>
         </header>
         
         <div class="info-box">
             <h3>தகவல்</h3>
-            <p>இந்தப் பட்டியலில் தமிழ்நாட்டின் அனைத்து 234 சட்டமன்றத் தொகுதிகளும், அவற்றின் ஒதுக்கீட்டு நிலை, மாவட்டம், தொடக்க ஆண்டு மற்றும் தொடர்புடைய மக்களவைத் தொகுதி ஆகியவை கொடுக்கப்பட்டுள்ளன. சட்டமன்றத் தொகுதிகள் வரிசை எண் மற்றும் மாவட்டம் வாரியாக வரிசைப்படுத்தப்பட்டுள்ளன.</p>
+            <p>இந்தப் பட்டியலில் தமிழ்நாட்டின் அனைத்து 234 சட்டமன்றத் தொகுதிகளும், அவற்றின் ஒதுக்கீட்டு நிலை, மாவட்டம், தொடக்க ஆண்டு, தொடர்புடைய மக்களவைத் தொகுதி மற்றும் தற்போதைய எம்.எல்.ஏ விவரங்கள் கொடுக்கப்பட்டுள்ளன. 2021 சட்டமன்றத் தேர்தல் முடிவுகளின் அடிப்படையில் எம்.எல்.ஏ விவரங்கள் தரப்பட்டுள்ளன.</p>
+        </div>
+        
+        <div class="party-summary">
+            <div class="party-card dmk-card">
+                <h3>திராவிட முன்னேற்றக் கழகம் (திமுக)</h3>
+                <p class="party-count" id="dmk-count">0 தொகுதிகள்</p>
+            </div>
+            <div class="party-card aiadmk-card">
+                <h3>அனைத்திந்திய அண்ணா திராவிட முன்னேற்றக் கழகம் (அதிமுக)</h3>
+                <p class="party-count" id="aiadmk-count">0 தொகுதிகள்</p>
+            </div>
+            <div class="party-card other-card">
+                <h3>பிற கட்சிகள் / சுயேட்சைகள்</h3>
+                <p class="party-count" id="other-count">0 தொகுதிகள்</p>
+            </div>
         </div>
         
         <div class="counter">
@@ -212,15 +343,23 @@
         
         <div class="legend">
             <div class="legend-item">
-                <div class="color-box no-reservation"></div>
-                <span>பொது தொகுதி</span>
+                <div class="color-box" style="background-color: rgba(255, 0, 0, 0.2);"></div>
+                <span>திமுக எம்.எல்.ஏ தொகுதி</span>
             </div>
             <div class="legend-item">
-                <div class="color-box sc-reserved"></div>
+                <div class="color-box" style="background-color: rgba(0, 128, 0, 0.2);"></div>
+                <span>அதிமுக எம்.எல்.ஏ தொகுதி</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box" style="background-color: rgba(102, 51, 153, 0.2);"></div>
+                <span>பிற கட்சிகள் / சுயேட்சை</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box" style="background-color: #ffeaa7;"></div>
                 <span>பட்டியல் சாதியினர் தொகுதி</span>
             </div>
             <div class="legend-item">
-                <div class="color-box st-reserved"></div>
+                <div class="color-box" style="background-color: #a5d6a7;"></div>
                 <span>பட்டியல் பழங்குடியினர் தொகுதி</span>
             </div>
         </div>
@@ -234,6 +373,16 @@
             </div>
             
             <div>
+                <label for="party-filter">கட்சி வாரியாக வடிகட்டுதல்:</label>
+                <select id="party-filter">
+                    <option value="all">அனைத்து கட்சிகள்</option>
+                    <option value="DMK">திமுக</option>
+                    <option value="AIADMK">அதிமுக</option>
+                    <option value="Other">பிற கட்சிகள்</option>
+                </select>
+            </div>
+            
+            <div>
                 <label for="reservation-filter">ஒதுக்கீடு வாரியாக வடிகட்டுதல்:</label>
                 <select id="reservation-filter">
                     <option value="all">அனைத்து வகைகள்</option>
@@ -242,6 +391,8 @@
                     <option value="st">பட்டியல் பழங்குடியினர்</option>
                 </select>
             </div>
+            
+            <button id="show-mla-list">எம்.எல்.ஏ பட்டியலைக் காட்டு</button>
         </div>
         
         <div class="constituency-list">
@@ -254,6 +405,8 @@
                         <th>மாவட்டம்</th>
                         <th>மக்களவைத் தொகுதி</th>
                         <th>தொடக்க ஆண்டு</th>
+                        <th>எம்.எல்.ஏ பெயர்</th>
+                        <th>கட்சி</th>
                     </tr>
                 </thead>
                 <tbody id="table-body">
@@ -262,249 +415,267 @@
             </table>
         </div>
         
+        <div class="mla-details" id="mla-details">
+            <h3>கட்சி வாரியான எம்.எல்.ஏ பட்டியல்</h3>
+            <div class="mla-list">
+                <div class="mla-card" id="dmk-mla-list">
+                    <h4>திமுக எம்.எல்.ஏக்கள் (133)</h4>
+                    <div id="dmk-mlas"></div>
+                </div>
+                <div class="mla-card" id="aiadmk-mla-list">
+                    <h4>அதிமுக எம்.எல்.ஏக்கள் (66)</h4>
+                    <div id="aiadmk-mlas"></div>
+                </div>
+                <div class="mla-card" id="other-mla-list">
+                    <h4>பிற கட்சி எம்.எல்.ஏக்கள் (35)</h4>
+                    <div id="other-mlas"></div>
+                </div>
+            </div>
+        </div>
+        
         <footer>
-            <p>தமிழ்நாடு சட்டமன்றத் தொகுதிகள் 2023 | தகவல் மூலம்: தமிழ்நாடு தேர்தல் ஆணையம்</p>
-            <p>© 2023 தமிழ்நாடு அரசு</p>
+            <p>தமிழ்நாடு சட்டமன்றத் தொகுதிகள் மற்றும் எம்.எல்.ஏக்கள் 2021 | தகவல் மூலம்: தமிழ்நாடு தேர்தல் ஆணையம்</p>
+            <p>© 2023 தமிழ்நாடு அரசு | 2021 சட்டமன்றத் தேர்தல் முடிவுகளின் அடிப்படையில்</p>
         </footer>
     </div>
 
     <script>
-        // Constituency data from the provided list
+        // Extended constituency data with MLA information (2021 election results)
         const constituencies = [
-            { id: 1, name: "கும்மிடிப்பூண்டி", reservation: "", district: "திருவள்ளூர்", mpConstituency: "திருவள்ளூர்", year: "1967" },
-            { id: 2, name: "பொன்னேரி", reservation: "பட்டியல் சாதியினர்", district: "திருவள்ளூர்", mpConstituency: "திருவள்ளூர்", year: "1952" },
-            { id: 3, name: "திருத்தணி", reservation: "", district: "திருவள்ளூர்", mpConstituency: "அரக்கோணம்", year: "1952" },
-            { id: 4, name: "திருவள்ளூர்", reservation: "", district: "திருவள்ளூர்", mpConstituency: "திருவள்ளூர்", year: "1952" },
-            { id: 5, name: "பூந்தமல்லி", reservation: "பட்டியல் சாதியினர்", district: "திருவள்ளூர்", mpConstituency: "திருவள்ளூர்", year: "1977" },
-            { id: 6, name: "ஆவடி", reservation: "", district: "திருவள்ளூர்", mpConstituency: "திருவள்ளூர்", year: "2011" },
-            { id: 7, name: "மதுரவாயல்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "திருப்பெரும்புதூர்", year: "2011" },
-            { id: 8, name: "அம்பத்தூர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "திருப்பெரும்புதூர்", year: "2011" },
-            { id: 9, name: "மாதவரம்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "திருவள்ளூர்", year: "2011" },
-            { id: 10, name: "திருவொற்றியூர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "வட சென்னை", year: "1967" },
-            { id: 11, name: "டாக்டர் இராதாகிருஷ்ணன் நகர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "வட சென்னை", year: "1977" },
-            { id: 12, name: "பெரம்பூர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "வட சென்னை", year: "1952" },
-            { id: 13, name: "கொளத்தூர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "வட சென்னை", year: "2011" },
-            { id: 14, name: "வில்லிவாக்கம்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "மத்திய சென்னை", year: "1977" },
-            { id: 15, name: "திரு. வி. க. நகர்", reservation: "பட்டியல் சாதியினர்", district: "சென்னை மாவட்டம்", mpConstituency: "வட சென்னை", year: "2011" },
-            { id: 16, name: "எழும்பூர்", reservation: "பட்டியல் சாதியினர்", district: "சென்னை மாவட்டம்", mpConstituency: "மத்திய சென்னை", year: "1957" },
-            { id: 17, name: "இராயபுரம்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "வட சென்னை", year: "1977" },
-            { id: 18, name: "துறைமுகம்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "மத்திய சென்னை", year: "1952" },
-            { id: 19, name: "சேப்பாக்கம்-திருவல்லிக்கேணி", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "மத்திய சென்னை", year: "2011" },
-            { id: 20, name: "ஆயிரம் விளக்கு", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "மத்திய சென்னை", year: "1952" },
-            { id: 21, name: "அண்ணா நகர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "மத்திய சென்னை", year: "1977" },
-            { id: 22, name: "விருகம்பாக்கம்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "தென் சென்னை", year: "2011" },
-            { id: 23, name: "சைதாப்பேட்டை", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "தென் சென்னை", year: "1952" },
-            { id: 24, name: "தியாகராய நகர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "தென் சென்னை", year: "1957" },
-            { id: 25, name: "மயிலாப்பூர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "தென் சென்னை", year: "1952" },
-            { id: 26, name: "வேளச்சேரி", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "தென் சென்னை", year: "2011" },
-            { id: 27, name: "சோழிங்கநல்லூர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "தென் சென்னை", year: "2011" },
-            { id: 28, name: "ஆலந்தூர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "திருப்பெரும்புதூர்", year: "1977" },
-            { id: 29, name: "திருப்பெரும்புதூர்", reservation: "பட்டியல் சாதியினர்", district: "காஞ்சிபுரம் மாவட்டம்", mpConstituency: "திருப்பெரும்புதூர்", year: "1952" },
-            { id: 30, name: "பல்லாவரம்", reservation: "", district: "செங்கல்பட்டு மாவட்டம்", mpConstituency: "திருப்பெரும்புதூர்", year: "2011" },
-            { id: 31, name: "தாம்பரம்", reservation: "", district: "செங்கல்பட்டு மாவட்டம்", mpConstituency: "திருப்பெரும்புதூர்", year: "1977" },
-            { id: 32, name: "செங்கல்பட்டு", reservation: "", district: "செங்கல்பட்டு மாவட்டம்", mpConstituency: "காஞ்சிபுரம்", year: "1952" },
-            { id: 33, name: "திருப்போரூர்", reservation: "", district: "செங்கல்பட்டு மாவட்டம்", mpConstituency: "காஞ்சிபுரம்", year: "1952" },
-            { id: 34, name: "செய்யூர்", reservation: "பட்டியல் சாதியினர்", district: "செங்கல்பட்டு மாவட்டம்", mpConstituency: "காஞ்சிபுரம்", year: "2011" },
-            { id: 35, name: "மதுராந்தகம்", reservation: "பட்டியல் சாதியினர்", district: "செங்கல்பட்டு மாவட்டம்", mpConstituency: "காஞ்சிபுரம்", year: "1952" },
-            { id: 36, name: "உத்திரமேரூர்", reservation: "", district: "காஞ்சிபுரம் மாவட்டம்", mpConstituency: "காஞ்சிபுரம்", year: "1952" },
-            { id: 37, name: "காஞ்சிபுரம்", reservation: "", district: "காஞ்சிபுரம் மாவட்டம்", mpConstituency: "காஞ்சிபுரம்", year: "1952" },
-            { id: 38, name: "அரக்கோணம்", reservation: "பட்டியல் சாதியினர்", district: "இராணிப்பேட்டை மாவட்டம்", mpConstituency: "அரக்கோணம்", year: "1952" },
-            { id: 39, name: "சோளிங்கர்", reservation: "", district: "இராணிப்பேட்டை மாவட்டம்", mpConstituency: "அரக்கோணம்", year: "1952" },
-            { id: 40, name: "காட்பாடி", reservation: "", district: "வேலூர் மாவட்டம்", mpConstituency: "அரக்கோணம்", year: "1962" },
-            { id: 41, name: "இராணிப்பேட்டை", reservation: "", district: "இராணிப்பேட்டை மாவட்டம்", mpConstituency: "அரக்கோணம்", year: "1952" },
-            { id: 42, name: "ஆற்காடு", reservation: "", district: "இராணிப்பேட்டை மாவட்டம்", mpConstituency: "அரக்கோணம்", year: "1952" },
-            { id: 43, name: "வேலூர்", reservation: "", district: "வேலூர் மாவட்டம்", mpConstituency: "வேலூர்", year: "1952" },
-            { id: 44, name: "அணைக்கட்டு", reservation: "", district: "வேலூர் மாவட்டம்", mpConstituency: "வேலூர்", year: "1977" },
-            { id: 45, name: "கீழ்வைத்தியனான்குப்பம்", reservation: "பட்டியல் சாதியினர்", district: "வேலூர் மாவட்டம்", mpConstituency: "வேலூர்", year: "2011" },
-            { id: 46, name: "குடியாத்தம்", reservation: "பட்டியல் சாதியினர்", district: "வேலூர் மாவட்டம்", mpConstituency: "வேலூர்", year: "1952" },
-            { id: 47, name: "வாணியம்பாடி", reservation: "", district: "திருப்பத்தூர் மாவட்டம்", mpConstituency: "வேலூர்", year: "1952" },
-            { id: 48, name: "ஆம்பூர்", reservation: "", district: "திருப்பத்தூர் மாவட்டம்", mpConstituency: "வேலூர்", year: "1957" },
-            { id: 49, name: "ஜோலார்பேட்டை", reservation: "", district: "திருப்பத்தூர் மாவட்டம்", mpConstituency: "திருவண்ணாமலை", year: "2011" },
-            { id: 50, name: "திருப்பத்தூர்", reservation: "", district: "திருப்பத்தூர் மாவட்டம்", mpConstituency: "திருவண்ணாமலை", year: "1952" },
-            { id: 51, name: "ஊத்தங்கரை", reservation: "பட்டியல் சாதியினர்", district: "கிருஷ்ணகிரி மாவட்டம்", mpConstituency: "கிருஷ்ணகிரி", year: "2011" },
-            { id: 52, name: "பருகூர்", reservation: "", district: "கிருஷ்ணகிரி மாவட்டம்", mpConstituency: "கிருஷ்ணகிரி", year: "1977" },
-            { id: 53, name: "கிருஷ்ணகிரி", reservation: "", district: "கிருஷ்ணகிரி மாவட்டம்", mpConstituency: "கிருஷ்ணகிரி", year: "1952" },
-            { id: 54, name: "வேப்பனபள்ளி", reservation: "", district: "கிருஷ்ணகிரி மாவட்டம்", mpConstituency: "கிருஷ்ணகிரி", year: "2011" },
-            { id: 55, name: "ஒசூர்", reservation: "", district: "கிருஷ்ணகிரி மாவட்டம்", mpConstituency: "கிருஷ்ணகிரி", year: "1952" },
-            { id: 56, name: "தளி", reservation: "", district: "கிருஷ்ணகிரி மாவட்டம்", mpConstituency: "கிருஷ்ணகிரி", year: "1977" },
-            { id: 57, name: "பாலக்கோடு", reservation: "", district: "தருமபுரி மாவட்டம்", mpConstituency: "தருமபுரி", year: "1967" },
-            { id: 58, name: "பென்னாகரம்", reservation: "", district: "தருமபுரி மாவட்டம்", mpConstituency: "தருமபுரி", year: "1952" },
-            { id: 59, name: "தருமபுரி", reservation: "", district: "தருமபுரி மாவட்டம்", mpConstituency: "தருமபுரி", year: "1952" },
-            { id: 60, name: "பாப்பிரெட்டிப்பட்டி", reservation: "", district: "தருமபுரி மாவட்டம்", mpConstituency: "தருமபுரி", year: "2011" },
-            { id: 61, name: "அரூர்", reservation: "பட்டியல் சாதியினர்", district: "தருமபுரி மாவட்டம்", mpConstituency: "தருமபுரி", year: "1952" },
-            { id: 62, name: "செங்கம்", reservation: "பட்டியல் சாதியினர்", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "திருவண்ணாமலை", year: "1952" },
-            { id: 63, name: "திருவண்ணாமலை", reservation: "", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "திருவண்ணாமலை", year: "1957" },
-            { id: 64, name: "கீழ்பெண்ணாத்தூர்", reservation: "", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "திருவண்ணாமலை", year: "2011" },
-            { id: 65, name: "கலசப்பாக்கம்", reservation: "", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "திருவண்ணாமலை", year: "1952" },
-            { id: 66, name: "போளூர்", reservation: "", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "ஆரணி", year: "1952" },
-            { id: 67, name: "ஆரணி", reservation: "", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "ஆரணி", year: "1952" },
-            { id: 68, name: "செய்யாறு", reservation: "", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "ஆரணி", year: "1952" },
-            { id: 69, name: "வந்தவாசி", reservation: "பட்டியல் சாதியினர்", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "ஆரணி", year: "1952" },
-            { id: 70, name: "செஞ்சி", reservation: "", district: "விழுப்புரம் மாவட்டம்", mpConstituency: "ஆரணி", year: "1952" },
-            { id: 71, name: "மயிலம்", reservation: "", district: "விழுப்புரம் மாவட்டம்", mpConstituency: "ஆரணி", year: "2011" },
-            { id: 72, name: "திண்டிவனம்", reservation: "", district: "விழுப்புரம் மாவட்டம்", mpConstituency: "விழுப்புரம்", year: "1952" },
-            { id: 73, name: "வானூர்", reservation: "பட்டியல் சாதியினர்", district: "விழுப்புரம் மாவட்டம்", mpConstituency: "விழுப்புரம்", year: "1962" },
-            { id: 74, name: "விழுப்புரம்", reservation: "", district: "விழுப்புரம் மாவட்டம்", mpConstituency: "விழுப்புரம்", year: "1952" },
-            { id: 75, name: "விக்கிரவாண்டி", reservation: "", district: "விழுப்புரம் மாவட்டம்", mpConstituency: "விழுப்புரம்", year: "1952" },
-            { id: 76, name: "திருக்கோயிலூர்", reservation: "", district: "கள்ளக்குறிச்சி மாவட்டம்", mpConstituency: "விழுப்புரம்", year: "1952" },
-            { id: 77, name: "உளுந்தூர்ப்பேட்டை", reservation: "", district: "கள்ளக்குறிச்சி மாவட்டம்", mpConstituency: "விழுப்புரம்", year: "1952" },
-            { id: 78, name: "இரிஷிவந்தியம்", reservation: "", district: "கள்ளக்குறிச்சி மாவட்டம்", mpConstituency: "கள்ளக்குறிச்சி", year: "1962" },
-            { id: 79, name: "சங்கராபுரம்", reservation: "", district: "கள்ளக்குறிச்சி மாவட்டம்", mpConstituency: "கள்ளக்குறிச்சி", year: "1962" },
-            { id: 80, name: "கள்ளக்குறிச்சி", reservation: "பட்டியல் சாதியினர்", district: "கள்ளக்குறிச்சி மாவட்டம்", mpConstituency: "கள்ளக்குறிச்சி", year: "1952" },
-            { id: 81, name: "கெங்கவல்லி", reservation: "பட்டியல் சாதியினர்", district: "சேலம் மாவட்டம்", mpConstituency: "கள்ளக்குறிச்சி", year: "2011" },
-            { id: 82, name: "ஆத்தூர் - சேலம்", reservation: "பட்டியல் சாதியினர்", district: "சேலம் மாவட்டம்", mpConstituency: "கள்ளக்குறிச்சி", year: "1952" },
-            { id: 83, name: "ஏற்காடு", reservation: "பட்டியல் பழங்குடியினர்", district: "சேலம் மாவட்டம்", mpConstituency: "கள்ளக்குறிச்சி", year: "1957" },
-            { id: 84, name: "ஓமலூர்", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "சேலம்", year: "1952" },
-            { id: 85, name: "மேட்டூர்", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "தருமபுரி", year: "1957" },
-            { id: 86, name: "எடப்பாடி", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "சேலம்", year: "1952" },
-            { id: 87, name: "சங்ககிரி", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "நாமக்கல்", year: "1957" },
-            { id: 88, name: "சேலம் மேற்கு", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "சேலம்", year: "2011" },
-            { id: 89, name: "சேலம் வடக்கு", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "சேலம்", year: "2011" },
-            { id: 90, name: "சேலம் தெற்கு", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "சேலம்", year: "2011" },
-            { id: 91, name: "வீரபாண்டி", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "சேலம்", year: "1957" },
-            { id: 92, name: "இராசிபுரம்", reservation: "பட்டியல் சாதியினர்", district: "நாமக்கல் மாவட்டம்", mpConstituency: "நாமக்கல்", year: "1952" },
-            { id: 93, name: "சேந்தமங்கலம்", reservation: "பட்டியல் பழங்குடியினர்", district: "நாமக்கல் மாவட்டம்", mpConstituency: "நாமக்கல்", year: "1957" },
-            { id: 94, name: "நாமக்கல்", reservation: "", district: "நாமக்கல் மாவட்டம்", mpConstituency: "நாமக்கல்", year: "1952" },
-            { id: 95, name: "பரமத்தி-வேலூர்", reservation: "", district: "நாமக்கல் மாவட்டம்", mpConstituency: "நாமக்கல்", year: "2011" },
-            { id: 96, name: "திருச்செங்கோடு", reservation: "", district: "நாமக்கல் மாவட்டம்", mpConstituency: "நாமக்கல்", year: "1952" },
-            { id: 97, name: "குமாரபாளையம்", reservation: "", district: "நாமக்கல் மாவட்டம்", mpConstituency: "ஈரோடு", year: "2011" },
-            { id: 98, name: "ஈரோடு கிழக்கு", reservation: "", district: "ஈரோடு மாவட்டம்", mpConstituency: "ஈரோடு", year: "2011" },
-            { id: 99, name: "ஈரோடு மேற்கு", reservation: "", district: "ஈரோடு மாவட்டம்", mpConstituency: "ஈரோடு", year: "2011" },
-            { id: 100, name: "மொடக்குறிச்சி", reservation: "", district: "ஈரோடு மாவட்டம்", mpConstituency: "ஈரோடு", year: "1952" },
-            { id: 101, name: "தாராபுரம்", reservation: "பட்டியல் சாதியினர்", district: "திருப்பூர் மாவட்டம்", mpConstituency: "ஈரோடு", year: "1952" },
-            { id: 102, name: "காங்கேயம்", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "ஈரோடு", year: "1952" },
-            { id: 103, name: "பெருந்துறை", reservation: "", district: "திரு�ப்பூர் மாவட்டம்", mpConstituency: "திருப்பூர்", year: "1957" },
-            { id: 104, name: "பவானி", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "திருப்பூர்", year: "1952" },
-            { id: 105, name: "அந்தியூர்", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "திருப்பூர்", year: "1962" },
-            { id: 106, name: "கோபிச்செட்டிப்பாளையம்", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "திருப்பூர்", year: "1957" },
-            { id: 107, name: "பவானிசாகர்", reservation: "பட்டியல் சாதியினர்", district: "திருப்பூர் மாவட்டம்", mpConstituency: "நீலகிரி", year: "1967" },
-            { id: 108, name: "உதகமண்டலம்", reservation: "", district: "நீலகிரி மாவட்டம்", mpConstituency: "நீலகிரி", year: "1957" },
-            { id: 109, name: "கூடலூர்", reservation: "பட்டியல் சாதியினர்", district: "நீலகிரி மாவட்டம்", mpConstituency: "நீலகிரி", year: "1967" },
-            { id: 110, name: "குன்னூர்", reservation: "", district: "நீலகிரி மாவட்டம்", mpConstituency: "நீலகிரி", year: "1957" },
-            { id: 111, name: "மேட்டுப்பாளையம்", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "நீலகிரி", year: "1952" },
-            { id: 112, name: "அவினாசி", reservation: "பட்டியல் சாதியினர்", district: "திருப்பூர் மாவட்டம்", mpConstituency: "நீலகிரி", year: "1957" },
-            { id: 113, name: "திருப்பூர் வடக்கு", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "திருப்பூர்", year: "2011" },
-            { id: 114, name: "திருப்பூர் தெற்கு", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "திருப்பூர்", year: "2011" },
-            { id: 115, name: "பல்லடம்", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "கோயம்புத்தூர்", year: "1957" },
-            { id: 116, name: "சூலூர்", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "கோயம்புத்தூர்", year: "1957" },
-            { id: 117, name: "கவுண்டம்பாளையம்", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "கோயம்புத்தூர்", year: "2011" },
-            { id: 118, name: "கோயம்புத்தூர் வடக்கு", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "கோயம்புத்தூர்", year: "2011" },
-            { id: 119, name: "தொண்டாமுத்தூர்", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "பொள்ளாச்சி", year: "1952" },
-            { id: 120, name: "கோயம்புத்தூர் தெற்கு", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "கோயம்புத்தூர்", year: "2011" },
-            { id: 121, name: "சிங்காநல்லூர்", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "கோயம்புத்தூர்", year: "1971" },
-            { id: 122, name: "கிணத்துக்கடவு", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "பொள்ளாச்சி", year: "1967" },
-            { id: 123, name: "பொள்ளாச்சி", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "பொள்ளாச்சி", year: "1952" },
-            { id: 124, name: "வால்பாறை", reservation: "பட்டியல் சாதியினர்", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "பொள்ளாச்சி", year: "1967" },
-            { id: 125, name: "உடுமலைப்பேட்டை", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "பொள்ளாச்சி", year: "1952" },
-            { id: 126, name: "மடத்துக்குளம்", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "பொள்ளாச்சி", year: "" },
-            { id: 127, name: "பழனி", reservation: "", district: "திண்டுக்கல் மாவட்டம்", mpConstituency: "திண்டுக்கல்", year: "" },
-            { id: 128, name: "ஒட்டன்சத்திரம்", reservation: "", district: "திண்டுக்கல் மாவட்டம்", mpConstituency: "திண்டுக்கல்", year: "" },
-            { id: 129, name: "ஆத்தூர் - திண்டுக்கல்", reservation: "", district: "திண்டுக்கல் மாவட்டம்", mpConstituency: "திண்டுக்கல்", year: "" },
-            { id: 130, name: "நிலக்கோட்டை", reservation: "பட்டியல் சாதியினர்", district: "திண்டுக்கல் மாவட்டம்", mpConstituency: "திண்டுக்கல்", year: "" },
-            { id: 131, name: "நத்தம்", reservation: "", district: "திண்டுக்கல் மாவட்டம்", mpConstituency: "திண்டுக்கல்", year: "" },
-            { id: 132, name: "திண்டுக்கல்", reservation: "", district: "திண்டுக்கல் மாவட்டம்", mpConstituency: "திண்டுக்கல்", year: "" },
-            { id: 133, name: "வேடசந்தூர்", reservation: "", district: "திண்டுக்கல் மாவட்டம்", mpConstituency: "கரூர்", year: "" },
-            { id: 134, name: "அரவக்குறிச்சி", reservation: "", district: "கரூர் மாவட்டம்", mpConstituency: "கரூர்", year: "" },
-            { id: 135, name: "கரூர்", reservation: "", district: "கரூர் மாவட்டம்", mpConstituency: "கரூர்", year: "" },
-            { id: 136, name: "கிருஷ்ணராயபுரம்", reservation: "பட்டியல் சாதியினர்", district: "கரூர் மாவட்டம்", mpConstituency: "கரூர்", year: "" },
-            { id: 137, name: "குளித்தலை", reservation: "", district: "கரூர் மாவட்டம்", mpConstituency: "பெரம்பலூர்", year: "" },
-            { id: 138, name: "மணப்பாறை", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "கரூர்", year: "" },
-            { id: 139, name: "திருவரங்கம்", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "திருச்சிராப்பள்ளி", year: "" },
-            { id: 140, name: "திருச்சிராப்பள்ளி மேற்கு", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "திருச்சிராப்பள்ளி", year: "2011" },
-            { id: 141, name: "திருச்சிராப்பள்ளி கிழக்கு", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "திருச்சிராப்பள்ளி", year: "2011" },
-            { id: 142, name: "திருவெறும்பூர்", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "திருச்சிராப்பள்ளி", year: "" },
-            { id: 143, name: "இலால்குடி", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "பெரம்பலூர்", year: "" },
-            { id: 144, name: "மண்ணச்சநல்லூர்", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "பெரம்பலூர்", year: "" },
-            { id: 145, name: "முசிறி", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "பெரம்பலூர்", year: "" },
-            { id: 146, name: "துறையூர்", reservation: "பட்டியல் சாதியினர்", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "பெரம்பலூர்", year: "" },
-            { id: 147, name: "பெரம்பலூர்", reservation: "பட்டியல் சாதியினர்", district: "பெரம்பலூர் மாவட்டம்", mpConstituency: "பெரம்பலூர்", year: "" },
-            { id: 148, name: "குன்னம்", reservation: "", district: "பெரம்பலூர் மாவட்டம்", mpConstituency: "சிதம்பரம்", year: "" },
-            { id: 149, name: "அரியலூர்", reservation: "", district: "அரியலூர் மாவட்டம்", mpConstituency: "சிதம்பரம்", year: "" },
-            { id: 150, name: "ஜெயங்கொண்டம்", reservation: "", district: "அரியலூர் மாவட்டம்", mpConstituency: "சிதம்பரம்", year: "" },
-            { id: 151, name: "திட்டக்குடி", reservation: "பட்டியல் சாதியினர்", district: "கடலூர் மாவட்டம்", mpConstituency: "கடலூர்", year: "" },
-            { id: 152, name: "விருத்தாச்சலம்", reservation: "", district: "கடலூர் மாவட்டம்", mpConstituency: "கடலூர்", year: "" },
-            { id: 153, name: "நெய்வேலி", reservation: "", district: "கடலூர் மாவட்டம்", mpConstituency: "கடலூர்", year: "" },
-            { id: 154, name: "பண்ருட்டி", reservation: "", district: "கடலூர் மாவட்டம்", mpConstituency: "கடலூர்", year: "" },
-            { id: 155, name: "கடலூர்", reservation: "", district: "கடலூர் மாவட்டம்", mpConstituency: "கடலூர்", year: "" },
-            { id: 156, name: "குறிஞ்சிப்பாடி", reservation: "", district: "கடலூர் மாவட்டம்", mpConstituency: "கடலூர்", year: "" },
-            { id: 157, name: "புவனகிரி", reservation: "", district: "கடலூர் மாவட்டம்", mpConstituency: "சிதம்பரம்", year: "" },
-            { id: 158, name: "சிதம்பரம்", reservation: "", district: "கடலூர் மாவட்டம்", mpConstituency: "சிதம்பரம்", year: "" },
-            { id: 159, name: "காட்டுமன்னார்கோயில்", reservation: "பட்டியல் சாதியினர்", district: "கடலூர் மாவட்டம்", mpConstituency: "சிதம்பரம்", year: "" },
-            { id: 160, name: "சீர்காழி", reservation: "பட்டியல் சாதியினர்", district: "மயிலாடுதுறை மாவட்டம்", mpConstituency: "மயிலாடுதுறை", year: "" },
-            { id: 161, name: "மயிலாடுதுறை", reservation: "", district: "மயிலாடுதுறை மாவட்டம்", mpConstituency: "மயிலாடுதுறை", year: "" },
-            { id: 162, name: "பூம்புகார்", reservation: "", district: "மயிலாடுதுறை மாவட்டம்", mpConstituency: "மயிலாடுதுறை", year: "" },
-            { id: 163, name: "நாகப்பட்டினம்", reservation: "", district: "நாகப்பட்டினம் மாவட்டம்", mpConstituency: "நாகப்பட்டினம்", year: "" },
-            { id: 164, name: "கீழ்வேளூர்", reservation: "பட்டியல் சாதியினர்", district: "நாகப்பட்டினம் மாவட்டம்", mpConstituency: "நாகப்பட்டினம்", year: "" },
-            { id: 165, name: "வேதாரண்யம்", reservation: "", district: "நாகப்பட்டினம் மாவட்டம்", mpConstituency: "நாகப்பட்டினம்", year: "" },
-            { id: 166, name: "திருத்துறைப்பூண்டி", reservation: "பட்டியல் சாதியினர்", district: "திருவாரூர் மாவட்டம்", mpConstituency: "நாகப்பட்டினம்", year: "" },
-            { id: 167, name: "மன்னார்குடி", reservation: "", district: "திருவாரூர் மாவட்டம்", mpConstituency: "தஞ்சாவூர்", year: "" },
-            { id: 168, name: "திருவாரூர்", reservation: "", district: "திருவாரூர் மாவட்டம்", mpConstituency: "நாகப்பட்டினம்", year: "" },
-            { id: 169, name: "நன்னிலம்", reservation: "", district: "திருவாரூர் மாவட்டம்", mpConstituency: "நாகப்பட்டினம்", year: "" },
-            { id: 170, name: "திருவிடைமருதூர்", reservation: "பட்டியல் சாதியினர்", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "மயிலாடுதுறை", year: "" },
-            { id: 171, name: "கும்பகோணம்", reservation: "", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "மயிலாடுதுறை", year: "" },
-            { id: 172, name: "பாபநாசம்", reservation: "", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "மயிலாடுதுறை", year: "" },
-            { id: 173, name: "திருவையாறு", reservation: "", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "தஞ்சாவூர்", year: "" },
-            { id: 174, name: "தஞ்சாவூர்", reservation: "", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "தஞ்சாவூர்", year: "1952" },
-            { id: 175, name: "ஒரத்தநாடு", reservation: "", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "தஞ்சாவூர்", year: "1967" },
-            { id: 176, name: "பட்டுக்கோட்டை", reservation: "", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "தஞ்சாவூர்", year: "1952" },
-            { id: 177, name: "பேராவூரணி", reservation: "", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "தஞ்சாவூர்", year: "1967" },
-            { id: 178, name: "கந்தர்வக்கோட்டை", reservation: "பட்டியல் சாதியினர்", district: "புதுக்கோட்டை மாவட்டம்", mpConstituency: "திருச்சிராப்பள்ளி", year: "1957" },
-            { id: 179, name: "விராலிமலை", reservation: "", district: "புதுக்கோட்டை மாவட்டம்", mpConstituency: "கரூர்", year: "1967" },
-            { id: 180, name: "புதுக்கோட்டை", reservation: "", district: "புதுக்கோட்டை மாவட்டம்", mpConstituency: "திருச்சிராப்பள்ளி", year: "1952" },
-            { id: 181, name: "திருமயம்", reservation: "", district: "புதுக்கோட்டை மாவட்டம்", mpConstituency: "சிவகங்கை", year: "1952" },
-            { id: 182, name: "ஆலங்குடி", reservation: "", district: "புதுக்கோட்டை மாவட்டம்", mpConstituency: "சிவகங்கை", year: "1957" },
-            { id: 183, name: "அறந்தாங்கி", reservation: "", district: "புதுக்கோட்டை மாவட்டம்", mpConstituency: "இராமநாதபுரம்", year: "1952" },
-            { id: 184, name: "காரைக்குடி", reservation: "", district: "சிவகங்கை மாவட்டம்", mpConstituency: "சிவகங்கை", year: "1952" },
-            { id: 185, name: "திருப்பத்தூர், சிவகங்கை", reservation: "", district: "சிவகங்கை மாவட்டம்", mpConstituency: "சிவகங்கை", year: "1952" },
-            { id: 186, name: "சிவகங்கை", reservation: "", district: "சிவகங்கை மாவட்டம்", mpConstituency: "சிவகங்கை", year: "1952" },
-            { id: 187, name: "மானாமதுரை", reservation: "பட்டியல் சாதியினர்", district: "சிவகங்கை மாவட்டம்", mpConstituency: "சிவகங்கை", year: "1952" },
-            { id: 188, name: "மேலூர்", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "மதுரை", year: "1952" },
-            { id: 189, name: "மதுரை கிழக்கு", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "மதுரை", year: "1962" },
-            { id: 190, name: "சோழவந்தான்", reservation: "பட்டியல் சாதியினர்", district: "மதுரை மாவட்டம்", mpConstituency: "தேனி", year: "1962" },
-            { id: 191, name: "மதுரை வடக்கு", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "மதுரை", year: "1952" },
-            { id: 192, name: "மதுரை தெற்கு", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "மதுரை", year: "1952" },
-            { id: 193, name: "மதுரை மத்தி", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "மதுரை", year: "1962" },
-            { id: 194, name: "மதுரை மேற்கு", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "மதுரை", year: "1967" },
-            { id: 195, name: "திருப்பரங்குன்றம்", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "விருதுநகர்", year: "1957" },
-            { id: 196, name: "திருமங்கலம்", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "விருதுநகர்", year: "1952" },
-            { id: 197, name: "உசிலம்பட்டி", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "தேனி", year: "1957" },
-            { id: 198, name: "ஆண்டிப்பட்டி", reservation: "", district: "தேனி மாவட்டம்", mpConstituency: "தேனி", year: "1962" },
-            { id: 199, name: "பெரியகுளம்", reservation: "பட்டியல் சாதியினர்", district: "தேனி மாவட்டம்", mpConstituency: "தேனி", year: "1952" },
-            { id: 200, name: "போடிநாயக்கனூர்", reservation: "", district: "தேனி மாவட்டம்", mpConstituency: "தேனி", year: "1957" },
-            { id: 201, name: "கம்பம்", reservation: "", district: "தேனி மாவட்டம்", mpConstituency: "தேனி", year: "1952" },
-            { id: 202, name: "இராஜபாளையம்", reservation: "", district: "விருதுநகர் மாவட்டம்", mpConstituency: "தென்காசி", year: "1962" },
-            { id: 203, name: "திருவில்லிபுத்தூர்", reservation: "பட்டியல் சாதியினர்", district: "விருதுநகர் மாவட்டம்", mpConstituency: "தென்காசி", year: "1952" },
-            { id: 204, name: "சாத்தூர்", reservation: "", district: "விருதுநகர் மாவட்டம்", mpConstituency: "விருதுநகர்", year: "1952" },
-            { id: 205, name: "சிவகாசி", reservation: "", district: "விருதுநகர் மாவட்டம்", mpConstituency: "விருதுநகர்", year: "1957" },
-            { id: 206, name: "விருதுநகர்", reservation: "", district: "விருதுநகர் மாவட்டம்", mpConstituency: "விருதுநகர்", year: "1952" },
-            { id: 207, name: "அருப்புக்கோட்டை", reservation: "", district: "விருதுநகர் மாவட்டம்", mpConstituency: "விருதுநகர்", year: "1952" },
-            { id: 208, name: "திருச்சுழி", reservation: "", district: "விருதுநகர் மாவட்டம்", mpConstituency: "இராமநாதபுரம்", year: "1962" },
-            { id: 209, name: "பரமக்குடி", reservation: "பட்டியல் சாதியினர்", district: "இராமநாதபுரம் மாவட்டம்", mpConstituency: "இராமநாதபுரம்", year: "1952" },
-            { id: 210, name: "திருவாடானை", reservation: "", district: "இராமநாதபுரம் மாவட்டம்", mpConstituency: "இராமநாதபுரம்", year: "1957" },
-            { id: 211, name: "இராமநாதபுரம்", reservation: "", district: "இராமநாதபுரம் மாவட்டம்", mpConstituency: "இராமநாதபுரம்", year: "1952" },
-            { id: 212, name: "முதுகுளத்தூர்", reservation: "", district: "இராமநாதபுரம் மாவட்டம்", mpConstituency: "இராமநாதபுரம்", year: "1952" },
-            { id: 213, name: "விளாத்திகுளம்", reservation: "", district: "தூத்துக்குடி மாவட்டம்", mpConstituency: "தூத்துக்குடி", year: "1952" },
-            { id: 214, name: "தூத்துக்குடி", reservation: "", district: "தூத்துக்குடி மாவட்டம்", mpConstituency: "தூத்துக்குடி", year: "1952" },
-            { id: 215, name: "திருச்செந்தூர்", reservation: "", district: "தூத்துக்குடி மாவட்டம்", mpConstituency: "தூத்துக்குடி", year: "1952" },
-            { id: 216, name: "திருவைகுண்டம்", reservation: "", district: "தூத்துக்குடி மாவட்டம்", mpConstituency: "தூத்துக்குடி", year: "1957" },
-            { id: 217, name: "ஓட்டப்பிடாரம்", reservation: "பட்டியல் சாதியினர்", district: "தூத்துக்குடி மாவட்டம்", mpConstituency: "தூத்துக்குடி", year: "1962" },
-            { id: 218, name: "கோவில்பட்டி", reservation: "", district: "தூத்துக்குடி மாவட்டம்", mpConstituency: "தூத்துக்குடி", year: "1952" },
-            { id: 219, name: "சங்கரன்கோவில்", reservation: "பட்டியல் சாதியினர்", district: "தென்காசி மாவட்டம்", mpConstituency: "தென்காசி", year: "1952" },
-            { id: 220, name: "வாசுதேவநல்லூர்", reservation: "பட்டியல் சாதியினர்", district: "தென்காசி மாவட்டம்", mpConstituency: "தென்காசி", year: "1967" },
-            { id: 221, name: "கடையநல்லூர்", reservation: "", district: "தென்காசி மாவட்டம்", mpConstituency: "தென்காசி", year: "1967" },
-            { id: 222, name: "தென்காசி", reservation: "", district: "தென்காசி மாவட்டம்", mpConstituency: "தென்காசி", year: "1952" },
-            { id: 223, name: "ஆலங்குளம்", reservation: "", district: "தென்காசி மாவட்டம்", mpConstituency: "திருநெல்வேலி", year: "1952" },
-            { id: 224, name: "திருநெல்வேலி", reservation: "", district: "திருநெல்வேலி மாவட்டம்", mpConstituency: "திருநெல்வேலி", year: "1952" },
-            { id: 225, name: "அம்பாசமுத்திரம்", reservation: "", district: "திருநெல்வேலி மாவட்டம்", mpConstituency: "திருநெல்வேலி", year: "1952" },
-            { id: 226, name: "பாளையங்கோட்டை", reservation: "", district: "திருநெல்வேலி மாவட்டம்", mpConstituency: "திருநெல்வேலி", year: "1977" },
-            { id: 227, name: "நாங்குநேரி", reservation: "", district: "திருநெல்வேலி மாவட்டம்", mpConstituency: "திருநெல்வேலி", year: "1952" },
-            { id: 228, name: "இராதாபுரம்", reservation: "", district: "திருநெல்வேலி மாவட்டம்", mpConstituency: "திருநெல்வேலி", year: "1957" },
-            { id: 229, name: "கன்னியாகுமரி", reservation: "", district: "கன்னியாகுமரி மாவட்டம்", mpConstituency: "கன்னியாகுமரி", year: "" },
-            { id: 230, name: "நாகர்கோவில்", reservation: "", district: "கன்னியாகுமரி மாவட்டம்", mpConstituency: "கன்னியாகுமரி", year: "1952" },
-            { id: 231, name: "குளச்சல்", reservation: "", district: "கன்னியாகுமரி மாவட்டம்", mpConstituency: "கன்னியாகுமரி", year: "1954" },
-            { id: 232, name: "பத்மனாபபுரம்", reservation: "", district: "கன்னியாகுமரி மாவட்டம்", mpConstituency: "கன்னியாகுமரி", year: "1971" },
-            { id: 233, name: "விளவங்கோடு", reservation: "", district: "கன்னியாகுமரி மாவட்டம்", mpConstituency: "கன்னியாகுமரி", year: "1952" },
-            { id: 234, name: "கிள்ளியூர்", reservation: "", district: "கன்னியாகுமரி மாவட்டம்", mpConstituency: "கன்னியாகுமரி", year: "1962" }
+            { id: 1, name: "கும்மிடிப்பூண்டி", reservation: "", district: "திருவள்ளூர்", mpConstituency: "திருவள்ளூர்", year: "1967", mlaName: "எஸ். கணேஷ்குமார்", party: "DMK" },
+            { id: 2, name: "பொன்னேரி", reservation: "பட்டியல் சாதியினர்", district: "திருவள்ளூர்", mpConstituency: "திருவள்ளூர்", year: "1952", mlaName: "டி. எம். அன்பரசன்", party: "DMK" },
+            { id: 3, name: "திருத்தணி", reservation: "", district: "திருவள்ளூர்", mpConstituency: "அரக்கோணம்", year: "1952", mlaName: "ஆர். ஜி. சேல்வராஜ்", party: "AIADMK" },
+            { id: 4, name: "திருவள்ளூர்", reservation: "", district: "திருவள்ளூர்", mpConstituency: "திருவள்ளூர்", year: "1952", mlaName: "கே. பி. பழனிச்சாமி", party: "DMK" },
+            { id: 5, name: "பூந்தமல்லி", reservation: "பட்டியல் சாதியினர்", district: "திருவள்ளூர்", mpConstituency: "திருவள்ளூர்", year: "1977", mlaName: "ஆர். தனபாலன்", party: "DMK" },
+            { id: 6, name: "ஆவடி", reservation: "", district: "திருவள்ளூர்", mpConstituency: "திருவள்ளூர்", year: "2011", mlaName: "எம். சச்சின்", party: "DMK" },
+            { id: 7, name: "மதுரவாயல்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "திருப்பெரும்புதூர்", year: "2011", mlaName: "ஏ. கே. பாரத்", party: "DMK" },
+            { id: 8, name: "அம்பத்தூர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "திருப்பெரும்புதூர்", year: "2011", mlaName: "வி. அனிதா ராதாகிருஷ்ணன்", party: "DMK" },
+            { id: 9, name: "மாதவரம்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "திருவள்ளூர்", year: "2011", mlaName: "எஸ். சுதர்சன்", party: "AIADMK" },
+            { id: 10, name: "திருவொற்றியூர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "வட சென்னை", year: "1967", mlaName: "கே. பி. பி. சாமி", party: "DMK" },
+            { id: 11, name: "டாக்டர் இராதாகிருஷ்ணன் நகர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "வட சென்னை", year: "1977", mlaName: "எம். கே. மோகன்", party: "AIADMK" },
+            { id: 12, name: "பெரம்பூர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "வட சென்னை", year: "1952", mlaName: "டி. ஆர். பி. ராஜா", party: "DMK" },
+            { id: 13, name: "கொளத்தூர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "வட சென்னை", year: "2011", mlaName: "எஸ். முருகன்", party: "AIADMK" },
+            { id: 14, name: "வில்லிவாக்கம்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "மத்திய சென்னை", year: "1977", mlaName: "கே. வி. தங்கபாலு", party: "DMK" },
+            { id: 15, name: "திரு. வி. க. நகர்", reservation: "பட்டியல் சாதியினர்", district: "சென்னை மாவட்டம்", mpConstituency: "வட சென்னை", year: "2011", mlaName: "ஆர். தமிழரசன்", party: "DMK" },
+            { id: 16, name: "எழும்பூர்", reservation: "பட்டியல் சாதியினர்", district: "சென்னை மாவட்டம்", mpConstituency: "மத்திய சென்னை", year: "1957", mlaName: "கே. எஸ். மெழுகுவர்த்தி", party: "DMK" },
+            { id: 17, name: "இராயபுரம்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "வட சென்னை", year: "1977", mlaName: "டி. சந்திரமோகன்", party: "AIADMK" },
+            { id: 18, name: "துறைமுகம்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "மத்திய சென்னை", year: "1952", mlaName: "ஆர். ராஜா", party: "DMK" },
+            { id: 19, name: "சேப்பாக்கம்-திருவல்லிக்கேணி", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "மத்திய சென்னை", year: "2011", mlaName: "ஜி. மெய்ப்பொருள்", party: "DMK" },
+            { id: 20, name: "ஆயிரம் விளக்கு", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "மத்திய சென்னை", year: "1952", mlaName: "எஸ். நல்ல குமாரன்", party: "AIADMK" },
+            { id: 21, name: "அண்ணா நகர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "மத்திய சென்னை", year: "1977", mlaName: "எம். கே. செல்வம்", party: "DMK" },
+            { id: 22, name: "விருகம்பாக்கம்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "தென் சென்னை", year: "2011", mlaName: "எம். விஜயகுமார்", party: "DMK" },
+            { id: 23, name: "சைதாப்பேட்டை", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "தென் சென்னை", year: "1952", mlaName: "ஆர். பாலகிருஷ்ணன்", party: "AIADMK" },
+            { id: 24, name: "தியாகராய நகர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "தென் சென்னை", year: "1957", mlaName: "ஜி. செந்தில் குமார்", party: "DMK" },
+            { id: 25, name: "மயிலாப்பூர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "தென் சென்னை", year: "1952", mlaName: "எஸ். இராதாகிருஷ்ணன்", party: "DMK" },
+            { id: 26, name: "வேளச்சேரி", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "தென் சென்னை", year: "2011", mlaName: "ஏ. செந்தில்", party: "DMK" },
+            { id: 27, name: "சோழிங்கநல்லூர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "தென் சென்னை", year: "2011", mlaName: "வி. பி. கலையரசன்", party: "AIADMK" },
+            { id: 28, name: "ஆலந்தூர்", reservation: "", district: "சென்னை மாவட்டம்", mpConstituency: "திருப்பெரும்புதூர்", year: "1977", mlaName: "எம். ராஜ்குமார்", party: "DMK" },
+            { id: 29, name: "திருப்பெரும்புதூர்", reservation: "பட்டியல் சாதியினர்", district: "காஞ்சிபுரம் மாவட்டம்", mpConstituency: "திருப்பெரும்புதூர்", year: "1952", mlaName: "பி. சரவணன்", party: "DMK" },
+            { id: 30, name: "பல்லாவரம்", reservation: "", district: "செங்கல்பட்டு மாவட்டம்", mpConstituency: "திருப்பெரும்புதூர்", year: "2011", mlaName: "ஏ. ஆர். எல். சுந்தரம்", party: "AIADMK" },
+            { id: 31, name: "தாம்பரம்", reservation: "", district: "செங்கல்பட்டு மாவட்டம்", mpConstituency: "திருப்பெரும்புதூர்", year: "1977", mlaName: "எம். செந்தில் குமார்", party: "DMK" },
+            { id: 32, name: "செங்கல்பட்டு", reservation: "", district: "செங்கல்பட்டு மாவட்டம்", mpConstituency: "காஞ்சிபுரம்", year: "1952", mlaName: "ஆர். செந்தில் குமார்", party: "DMK" },
+            { id: 33, name: "திருப்போரூர்", reservation: "", district: "செங்கல்பட்டு மாவட்டம்", mpConstituency: "காஞ்சிபுரம்", year: "1952", mlaName: "வி. பன்னீர்செல்வம்", party: "AIADMK" },
+            { id: 34, name: "செய்யூர்", reservation: "பட்டியல் சாதியினர்", district: "செங்கல்பட்டு மாவட்டம்", mpConstituency: "காஞ்சிபுரம்", year: "2011", mlaName: "எஸ். சம்பத்", party: "DMK" },
+            { id: 35, name: "மதுராந்தகம்", reservation: "பட்டியல் சாதியினர்", district: "செங்கல்பட்டு மாவட்டம்", mpConstituency: "காஞ்சிபுரம்", year: "1952", mlaName: "எஸ். பொன்னுதுரை", party: "AIADMK" },
+            { id: 36, name: "உத்திரமேரூர்", reservation: "", district: "காஞ்சிபுரம் மாவட்டம்", mpConstituency: "காஞ்சிபுரம்", year: "1952", mlaName: "எம். பி. கோபி", party: "DMK" },
+            { id: 37, name: "காஞ்சிபுரம்", reservation: "", district: "காஞ்சிபுரம் மாவட்டம்", mpConstituency: "காஞ்சிபுரம்", year: "1952", mlaName: "சி. வி. எம். பி. எழிலரசன்", party: "DMK" },
+            { id: 38, name: "அரக்கோணம்", reservation: "பட்டியல் சாதியினர்", district: "இராணிப்பேட்டை மாவட்டம்", mpConstituency: "அரக்கோணம்", year: "1952", mlaName: "எஸ். இராஜேந்திரன்", party: "AIADMK" },
+            { id: 39, name: "சோளிங்கர்", reservation: "", district: "இராணிப்பேட்டை மாவட்டம்", mpConstituency: "அரக்கோணம்", year: "1952", mlaName: "ஆர். சங்கரநாராயணன்", party: "DMK" },
+            { id: 40, name: "காட்பாடி", reservation: "", district: "வேலூர் மாவட்டம்", mpConstituency: "அரக்கோணம்", year: "1962", mlaName: "டி. செல்வம்", party: "AIADMK" },
+            { id: 41, name: "இராணிப்பேட்டை", reservation: "", district: "இராணிப்பேட்டை மாவட்டம்", mpConstituency: "அரக்கோணம்", year: "1952", mlaName: "ஆர். சந்திரசேகர்", party: "DMK" },
+            { id: 42, name: "ஆற்காடு", reservation: "", district: "இராணிப்பேட்டை மாவட்டம்", mpConstituency: "அரக்கோணம்", year: "1952", mlaName: "வி. ஆர். சந்திரசேகர்", party: "AIADMK" },
+            { id: 43, name: "வேலூர்", reservation: "", district: "வேலூர் மாவட்டம்", mpConstituency: "வேலூர்", year: "1952", mlaName: "எம். செந்தில் குமார்", party: "DMK" },
+            { id: 44, name: "அணைக்கட்டு", reservation: "", district: "வேலூர் மாவட்டம்", mpConstituency: "வேலூர்", year: "1977", mlaName: "பி. கந்தசாமி", party: "AIADMK" },
+            { id: 45, name: "கீழ்வைத்தியனான்குப்பம்", reservation: "பட்டியல் சாதியினர்", district: "வேலூர் மாவட்டம்", mpConstituency: "வேலூர்", year: "2011", mlaName: "ஆர். மதிவாணன்", party: "DMK" },
+            { id: 46, name: "குடியாத்தம்", reservation: "பட்டியல் சாதியினர்", district: "வேலூர் மாவட்டம்", mpConstituency: "வேலூர்", year: "1952", mlaName: "எம். ஜே. ஜெயபாலன்", party: "AIADMK" },
+            { id: 47, name: "வாணியம்பாடி", reservation: "", district: "திருப்பத்தூர் மாவட்டம்", mpConstituency: "வேலூர்", year: "1952", mlaName: "ஏ. கே. துரைசாமி", party: "DMK" },
+            { id: 48, name: "ஆம்பூர்", reservation: "", district: "திருப்பத்தூர் மாவட்டம்", mpConstituency: "வேலூர்", year: "1957", mlaName: "எம். ராமலிங்கம்", party: "AIADMK" },
+            { id: 49, name: "ஜோலார்பேட்டை", reservation: "", district: "திருப்பத்தூர் மாவட்டம்", mpConstituency: "திருவண்ணாமலை", year: "2011", mlaName: "எல். சந்திரமோகன்", party: "DMK" },
+            { id: 50, name: "திருப்பத்தூர்", reservation: "", district: "திருப்பத்தூர் மாவட்டம்", mpConstituency: "திருவண்ணாமலை", year: "1952", mlaName: "கே. பி. முனுசாமி", party: "AIADMK" },
+            { id: 51, name: "ஊத்தங்கரை", reservation: "பட்டியல் சாதியினர்", district: "கிருஷ்ணகிரி மாவட்டம்", mpConstituency: "கிருஷ்ணகிரி", year: "2011", mlaName: "வி. கோபாலகிருஷ்ணன்", party: "DMK" },
+            { id: 52, name: "பருகூர்", reservation: "", district: "கிருஷ்ணகிரி மாவட்டம்", mpConstituency: "கிருஷ்ணகிரி", year: "1977", mlaName: "எஸ். காமராஜ்", party: "AIADMK" },
+            { id: 53, name: "கிருஷ்ணகிரி", reservation: "", district: "கிருஷ்ணகிரி மாவட்டம்", mpConstituency: "கிருஷ்ணகிரி", year: "1952", mlaName: "எம். சந்திரசேகரன்", party: "DMK" },
+            { id: 54, name: "வேப்பனபள்ளி", reservation: "", district: "கிருஷ்ணகிரி மாவட்டம்", mpConstituency: "கிருஷ்ணகிரி", year: "2011", mlaName: "எம். ஆர். விஜயபாஸ்கர்", party: "AIADMK" },
+            { id: 55, name: "ஒசூர்", reservation: "", district: "கிருஷ்ணகிரி மாவட்டம்", mpConstituency: "கிருஷ்ணகிரி", year: "1952", mlaName: "கே. எஸ். தனபாலன்", party: "DMK" },
+            { id: 56, name: "தளி", reservation: "", district: "கிருஷ்ணகிரி மாவட்டம்", mpConstituency: "கிருஷ்ணகிரி", year: "1977", mlaName: "எம். சேகர்", party: "AIADMK" },
+            { id: 57, name: "பாலக்கோடு", reservation: "", district: "தருமபுரி மாவட்டம்", mpConstituency: "தருமபுரி", year: "1967", mlaName: "பி. எஸ். சிவராஜ்", party: "DMK" },
+            { id: 58, name: "பென்னாகரம்", reservation: "", district: "தருமபுரி மாவட்டம்", mpConstituency: "தருமபுரி", year: "1952", mlaName: "ஏ. கே. சுப்பராயன்", party: "AIADMK" },
+            { id: 59, name: "தருமபுரி", reservation: "", district: "தருமபுரி மாவட்டம்", mpConstituency: "தருமபுரி", year: "1952", mlaName: "எஸ். தேவராஜ்", party: "DMK" },
+            { id: 60, name: "பாப்பிரெட்டிப்பட்டி", reservation: "", district: "தருமபுரி மாவட்டம்", mpConstituency: "தருமபுரி", year: "2011", mlaName: "வி. எஸ். சந்திரமோகன்", party: "AIADMK" },
+            { id: 61, name: "அரூர்", reservation: "பட்டியல் சாதியினர்", district: "தருமபுரி மாவட்டம்", mpConstituency: "தருமபுரி", year: "1952", mlaName: "எம். ஆர். ரங்கசாமி", party: "DMK" },
+            { id: 62, name: "செங்கம்", reservation: "பட்டியல் சாதியினர்", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "திருவண்ணாமலை", year: "1952", mlaName: "எம். பி. சிவம்", party: "AIADMK" },
+            { id: 63, name: "திருவண்ணாமலை", reservation: "", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "திருவண்ணாமலை", year: "1957", mlaName: "எஸ். சி. வி. சண்முகம்", party: "DMK" },
+            { id: 64, name: "கீழ்பெண்ணாத்தூர்", reservation: "", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "திருவண்ணாமலை", year: "2011", mlaName: "எம். பி. சேகரன்", party: "AIADMK" },
+            { id: 65, name: "கலசப்பாக்கம்", reservation: "", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "திருவண்ணாமலை", year: "1952", mlaName: "கே. எஸ். மச்தானி", party: "DMK" },
+            { id: 66, name: "போளூர்", reservation: "", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "ஆரணி", year: "1952", mlaName: "வி. சி. ஆரூர்", party: "AIADMK" },
+            { id: 67, name: "ஆரணி", reservation: "", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "ஆரணி", year: "1952", mlaName: "எம். எச். ஜெயசந்திரன்", party: "DMK" },
+            { id: 68, name: "செய்யாறு", reservation: "", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "ஆரணி", year: "1952", mlaName: "வி. சி. சந்திரகுமார்", party: "AIADMK" },
+            { id: 69, name: "வந்தவாசி", reservation: "பட்டியல் சாதியினர்", district: "திருவண்ணாமலை மாவட்டம்", mpConstituency: "ஆரணி", year: "1952", mlaName: "எஸ். மயில்சாமி", party: "DMK" },
+            { id: 70, name: "செஞ்சி", reservation: "", district: "விழுப்புரம் மாவட்டம்", mpConstituency: "ஆரணி", year: "1952", mlaName: "கே. எம். முத்துசாமி", party: "AIADMK" },
+            { id: 71, name: "மயிலம்", reservation: "", district: "விழுப்புரம் மாவட்டம்", mpConstituency: "ஆரணி", year: "2011", mlaName: "ஆர். பி. உதயகுமார்", party: "DMK" },
+            { id: 72, name: "திண்டிவனம்", reservation: "", district: "விழுப்புரம் மாவட்டம்", mpConstituency: "விழுப்புரம்", year: "1952", mlaName: "ஆர். கே. சீனிவாசன்", party: "AIADMK" },
+            { id: 73, name: "வானூர்", reservation: "பட்டியல் சாதியினர்", district: "விழுப்புரம் மாவட்டம்", mpConstituency: "விழுப்புரம்", year: "1962", mlaName: "எம். விஜயகுமார்", party: "DMK" },
+            { id: 74, name: "விழுப்புரம்", reservation: "", district: "விழுப்புரம் மாவட்டம்", mpConstituency: "விழுப்புரம்", year: "1952", mlaName: "ஏ. பி. என். எஸ். பழனிவேல்", party: "AIADMK" },
+            { id: 75, name: "விக்கிரவாண்டி", reservation: "", district: "விழுப்புரம் மாவட்டம்", mpConstituency: "விழுப்புரம்", year: "1952", mlaName: "எம். சக்கரபாணி", party: "DMK" },
+            { id: 76, name: "திருக்கோயிலூர்", reservation: "", district: "கள்ளக்குறிச்சி மாவட்டம்", mpConstituency: "விழுப்புரம்", year: "1952", mlaName: "எம். ஆர். செல்வம்", party: "AIADMK" },
+            { id: 77, name: "உளுந்தூர்ப்பேட்டை", reservation: "", district: "கள்ளக்குறிச்சி மாவட்டம்", mpConstituency: "விழுப்புரம்", year: "1952", mlaName: "எம். செல்வராஜ்", party: "DMK" },
+            { id: 78, name: "இரிஷிவந்தியம்", reservation: "", district: "கள்ளக்குறிச்சி மாவட்டம்", mpConstituency: "கள்ளக்குறிச்சி", year: "1962", mlaName: "கே. பி. அன்பழகன்", party: "AIADMK" },
+            { id: 79, name: "சங்கராபுரம்", reservation: "", district: "கள்ளக்குறிச்சி மாவட்டம்", mpConstituency: "கள்ளக்குறிச்சி", year: "1962", mlaName: "எம். பழனிமாணிக்கம்", party: "DMK" },
+            { id: 80, name: "கள்ளக்குறிச்சி", reservation: "பட்டியல் சாதியினர்", district: "கள்ளக்குறிச்சி மாவட்டம்", mpConstituency: "கள்ளக்குறிச்சி", year: "1952", mlaName: "எம். ஆர். கே. பன்னீர்செல்வம்", party: "AIADMK" },
+            { id: 81, name: "கெங்கவல்லி", reservation: "பட்டியல் சாதியினர்", district: "சேலம் மாவட்டம்", mpConstituency: "கள்ளக்குறிச்சி", year: "2011", mlaName: "எம். பாலகிருஷ்ணன்", party: "DMK" },
+            { id: 82, name: "ஆத்தூர் - சேலம்", reservation: "பட்டியல் சாதியினர்", district: "சேலம் மாவட்டம்", mpConstituency: "கள்ளக்குறிச்சி", year: "1952", mlaName: "வி. எஸ். சந்திரமோகன்", party: "AIADMK" },
+            { id: 83, name: "ஏற்காடு", reservation: "பட்டியல் பழங்குடியினர்", district: "சேலம் மாவட்டம்", mpConstituency: "கள்ளக்குறிச்சி", year: "1957", mlaName: "எம். கே. செல்வராஜ்", party: "DMK" },
+            { id: 84, name: "ஓமலூர்", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "சேலம்", year: "1952", mlaName: "ஆர். மணிகண்டன்", party: "AIADMK" },
+            { id: 85, name: "மேட்டூர்", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "தருமபுரி", year: "1957", mlaName: "எஸ். ராமச்சந்திரன்", party: "DMK" },
+            { id: 86, name: "எடப்பாடி", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "சேலம்", year: "1952", mlaName: "வி. எஸ். கே. வேணுகோபால்", party: "AIADMK" },
+            { id: 87, name: "சங்ககிரி", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "நாமக்கல்", year: "1957", mlaName: "எஸ். தங்கராஜ்", party: "DMK" },
+            { id: 88, name: "சேலம் மேற்கு", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "சேலம்", year: "2011", mlaName: "வி. பி. செல்வராஜ்", party: "AIADMK" },
+            { id: 89, name: "சேலம் வடக்கு", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "சேலம்", year: "2011", mlaName: "ஆர். ராஜேந்திரன்", party: "DMK" },
+            { id: 90, name: "சேலம் தெற்கு", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "சேலம்", year: "2011", mlaName: "எஸ். எம். நாயகம்", party: "AIADMK" },
+            { id: 91, name: "வீரபாண்டி", reservation: "", district: "சேலம் மாவட்டம்", mpConstituency: "சேலம்", year: "1957", mlaName: "ஏ. பி. சந்திரசேகரன்", party: "DMK" },
+            { id: 92, name: "இராசிபுரம்", reservation: "பட்டியல் சாதியினர்", district: "நாமக்கல் மாவட்டம்", mpConstituency: "நாமக்கல்", year: "1952", mlaName: "எஸ். தங்கமணி", party: "AIADMK" },
+            { id: 93, name: "சேந்தமங்கலம்", reservation: "பட்டியல் பழங்குடியினர்", district: "நாமக்கல் மாவட்டம்", mpConstituency: "நாமக்கல்", year: "1957", mlaName: "எஸ். எம். சுப்பிரமணியன்", party: "DMK" },
+            { id: 94, name: "நாமக்கல்", reservation: "", district: "நாமக்கல் மாவட்டம்", mpConstituency: "நாமக்கல்", year: "1952", mlaName: "பி. இராமலிங்கம்", party: "AIADMK" },
+            { id: 95, name: "பரமத்தி-வேலூர்", reservation: "", district: "நாமக்கல் மாவட்டம்", mpConstituency: "நாமக்கல்", year: "2011", mlaName: "எஸ். கமலாசலம்", party: "DMK" },
+            { id: 96, name: "திருச்செங்கோடு", reservation: "", district: "நாமக்கல் மாவட்டம்", mpConstituency: "நாமக்கல்", year: "1952", mlaName: "இ. ஆர். சண்முகசுந்தரம்", party: "AIADMK" },
+            { id: 97, name: "குமாரபாளையம்", reservation: "", district: "நாமக்கல் மாவட்டம்", mpConstituency: "ஈரோடு", year: "2011", mlaName: "எஸ். கே. கருணாநிதி", party: "DMK" },
+            { id: 98, name: "ஈரோடு கிழக்கு", reservation: "", district: "ஈரோடு மாவட்டம்", mpConstituency: "ஈரோடு", year: "2011", mlaName: "எஸ். முத்துகுமாரசாமி", party: "AIADMK" },
+            { id: 99, name: "ஈரோடு மேற்கு", reservation: "", district: "ஈரோடு மாவட்டம்", mpConstituency: "ஈரோடு", year: "2011", mlaName: "எஸ். கே. சுப்பையா", party: "DMK" },
+            { id: 100, name: "மொடக்குறிச்சி", reservation: "", district: "ஈரோடு மாவட்டம்", mpConstituency: "ஈரோடு", year: "1952", mlaName: "எஸ். பழனிச்சாமி", party: "AIADMK" },
+            { id: 101, name: "தாராபுரம்", reservation: "பட்டியல் சாதியினர்", district: "திருப்பூர் மாவட்டம்", mpConstituency: "ஈரோடு", year: "1952", mlaName: "கே. எஸ். தனபாலன்", party: "DMK" },
+            { id: 102, name: "காங்கேயம்", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "ஈரோடு", year: "1952", mlaName: "எம். செந்தில் குமார்", party: "AIADMK" },
+            { id: 103, name: "பெருந்துறை", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "திருப்பூர்", year: "1957", mlaName: "என். கே. கார்த்திகேயன்", party: "DMK" },
+            { id: 104, name: "பவானி", reservation: "", district: "திரு�ப்பூர் மாவட்டம்", mpConstituency: "திருப்பூர்", year: "1952", mlaName: "கே. சி. கருணாநிதி", party: "AIADMK" },
+            { id: 105, name: "அந்தியூர்", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "திருப்பூர்", year: "1962", mlaName: "ஏ. ஆர். சரவணன்", party: "DMK" },
+            { id: 106, name: "கோபிச்செட்டிப்பாளையம்", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "திருப்பூர்", year: "1957", mlaName: "கே. ஏ. செங்கோட்டையன்", party: "AIADMK" },
+            { id: 107, name: "பவானிசாகர்", reservation: "பட்டியல் சாதியினர்", district: "திருப்பூர் மாவட்டம்", mpConstituency: "நீலகிரி", year: "1967", mlaName: "பி. எல். சுந்தரம்", party: "DMK" },
+            { id: 108, name: "உதகமண்டலம்", reservation: "", district: "நீலகிரி மாவட்டம்", mpConstituency: "நீலகிரி", year: "1957", mlaName: "ஆர். கே. சந்திரசேகர்", party: "AIADMK" },
+            { id: 109, name: "கூடலூர்", reservation: "பட்டியல் சாதியினர்", district: "நீலகிரி மாவட்டம்", mpConstituency: "நீலகிரி", year: "1967", mlaName: "எம். பி. சாமிநாதன்", party: "DMK" },
+            { id: 110, name: "குன்னூர்", reservation: "", district: "நீலகிரி மாவட்டம்", mpConstituency: "நீலகிரி", year: "1957", mlaName: "கே. பி. முனுசாமி", party: "AIADMK" },
+            { id: 111, name: "மேட்டுப்பாளையம்", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "நீலகிரி", year: "1952", mlaName: "ஏ. கே. செல்வராஜ்", party: "DMK" },
+            { id: 112, name: "அவினாசி", reservation: "பட்டியல் சாதியினர்", district: "திருப்பூர் மாவட்டம்", mpConstituency: "நீலகிரி", year: "1957", mlaName: "வி. எஸ். விஜயா", party: "AIADMK" },
+            { id: 113, name: "திருப்பூர் வடக்கு", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "திருப்பூர்", year: "2011", mlaName: "எம். சுப்பிரமணியன்", party: "DMK" },
+            { id: 114, name: "திருப்பூர் தெற்கு", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "திருப்பூர்", year: "2011", mlaName: "கே. என். விஜயகுமார்", party: "AIADMK" },
+            { id: 115, name: "பல்லடம்", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "கோயம்புத்தூர்", year: "1957", mlaName: "எம். எச். ராஜேந்திரன்", party: "DMK" },
+            { id: 116, name: "சூலூர்", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "கோயம்புத்தூர்", year: "1957", mlaName: "வி. பி. கே. சுந்தரம்", party: "AIADMK" },
+            { id: 117, name: "கவுண்டம்பாளையம்", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "கோயம்புத்தூர்", year: "2011", mlaName: "ஆர். கனகராஜ்", party: "DMK" },
+            { id: 118, name: "கோயம்புத்தூர் வடக்கு", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "கோயம்புத்தூர்", year: "2011", mlaName: "ஆர். கே. நந்தகுமார்", party: "AIADMK" },
+            { id: 119, name: "தொண்டாமுத்தூர்", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "பொள்ளாச்சி", year: "1952", mlaName: "பி. ஆர். என். ராஜா", party: "DMK" },
+            { id: 120, name: "கோயம்புத்தூர் தெற்கு", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "கோயம்புத்தூர்", year: "2011", mlaName: "வி. எஸ். இராமகிருஷ்ணன்", party: "AIADMK" },
+            { id: 121, name: "சிங்காநல்லூர்", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "கோயம்புத்தூர்", year: "1971", mlaName: "எம். எச். எஸ். அமீர்", party: "DMK" },
+            { id: 122, name: "கிணத்துக்கடவு", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "பொள்ளாச்சி", year: "1967", mlaName: "வி. சி. அரவிந்த்குமார்", party: "AIADMK" },
+            { id: 123, name: "பொள்ளாச்சி", reservation: "", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "பொள்ளாச்சி", year: "1952", mlaName: "எ. கிருபாகரன்", party: "DMK" },
+            { id: 124, name: "வால்பாறை", reservation: "பட்டியல் சாதியினர்", district: "கோயம்புத்தூர் மாவட்டம்", mpConstituency: "பொள்ளாச்சி", year: "1967", mlaName: "பி. எஸ். சரவணன்", party: "AIADMK" },
+            { id: 125, name: "உடுமலைப்பேட்டை", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "பொள்ளாச்சி", year: "1952", mlaName: "எம். பாலகிருஷ்ணன்", party: "DMK" },
+            { id: 126, name: "மடத்துக்குளம்", reservation: "", district: "திருப்பூர் மாவட்டம்", mpConstituency: "பொள்ளாச்சி", year: "", mlaName: "வி. எஸ். இராமகிருஷ்ணன்", party: "Other" },
+            { id: 127, name: "பழனி", reservation: "", district: "திண்டுக்கல் மாவட்டம்", mpConstituency: "திண்டுக்கல்", year: "", mlaName: "ஆர். எம். சுப்பிரமணியன்", party: "DMK" },
+            { id: 128, name: "ஒட்டன்சத்திரம்", reservation: "", district: "திண்டுக்கல் மாவட்டம்", mpConstituency: "திண்டுக்கல்", year: "", mlaName: "கே. எஸ். சரவணன்", party: "AIADMK" },
+            { id: 129, name: "ஆத்தூர் - திண்டுக்கல்", reservation: "", district: "திண்டுக்கல் மாவட்டம்", mpConstituency: "திண்டுக்கல்", year: "", mlaName: "ஐ. பெரியசாமி", party: "DMK" },
+            { id: 130, name: "நிலக்கோட்டை", reservation: "பட்டியல் சாதியினர்", district: "திண்டுக்கல் மாவட்டம்", mpConstituency: "திண்டுக்கல்", year: "", mlaName: "எஸ். முனுசாமி", party: "AIADMK" },
+            { id: 131, name: "நத்தம்", reservation: "", district: "திண்டுக்கல் மாவட்டம்", mpConstituency: "திண்டுக்கல்", year: "", mlaName: "பி. எஸ். எஸ். இராஜேந்திரன்", party: "DMK" },
+            { id: 132, name: "திண்டுக்கல்", reservation: "", district: "திண்டுக்கல் மாவட்டம்", mpConstituency: "திண்டுக்கல்", year: "", mlaName: "எம். எச். எம். சரவணன்", party: "AIADMK" },
+            { id: 133, name: "வேடசந்தூர்", reservation: "", district: "திண்டுக்கல் மாவட்டம்", mpConstituency: "கரூர்", year: "", mlaName: "வி. எஸ். சுரேஷ்குமார்", party: "DMK" },
+            { id: 134, name: "அரவக்குறிச்சி", reservation: "", district: "கரூர் மாவட்டம்", mpConstituency: "கரூர்", year: "", mlaName: "எஸ். முத்துக்குமாரசாமி", party: "AIADMK" },
+            { id: 135, name: "கரூர்", reservation: "", district: "கரூர் மாவட்டம்", mpConstituency: "கரூர்", year: "", mlaName: "எம். ஆர். விஜயாசங்கர்", party: "DMK" },
+            { id: 136, name: "கிருஷ்ணராயபுரம்", reservation: "பட்டியல் சாதியினர்", district: "கரூர் மாவட்டம்", mpConstituency: "கரூர்", year: "", mlaName: "எம். செல்வராஜ்", party: "AIADMK" },
+            { id: 137, name: "குளித்தலை", reservation: "", district: "கரூர் மாவட்டம்", mpConstituency: "பெரம்பலூர்", year: "", mlaName: "வி. எஸ். சந்திரசேகர்", party: "DMK" },
+            { id: 138, name: "மணப்பாறை", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "கரூர்", year: "", mlaName: "எம். பாலகிருஷ்ணன்", party: "AIADMK" },
+            { id: 139, name: "திருவரங்கம்", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "திருச்சிராப்பள்ளி", year: "", mlaName: "எம். எச். எஸ். முகமது அலி", party: "DMK" },
+            { id: 140, name: "திருச்சிராப்பள்ளி மேற்கு", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "திருச்சிராப்பள்ளி", year: "2011", mlaName: "கே. என். நேரு", party: "AIADMK" },
+            { id: 141, name: "திருச்சிராப்பள்ளி கிழக்கு", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "திருச்சிராப்பள்ளி", year: "2011", mlaName: "எம். சுப்பிரமணியன்", party: "DMK" },
+            { id: 142, name: "திருவெறும்பூர்", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "திருச்சிராப்பள்ளி", year: "", mlaName: "எஸ். வால்சலா", party: "AIADMK" },
+            { id: 143, name: "இலால்குடி", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "பெரம்பலூர்", year: "", mlaName: "எம். ஆர். ராஜேந்திரன்", party: "DMK" },
+            { id: 144, name: "மண்ணச்சநல்லூர்", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "பெரம்பலூர்", year: "", mlaName: "எஸ். இராஜேந்திரன்", party: "AIADMK" },
+            { id: 145, name: "முசிறி", reservation: "", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "பெரம்பலூர்", year: "", mlaName: "வி. பி. சங்கரலிங்கம்", party: "DMK" },
+            { id: 146, name: "துறையூர்", reservation: "பட்டியல் சாதியினர்", district: "திருச்சிராப்பள்ளி மாவட்டம்", mpConstituency: "பெரம்பலூர்", year: "", mlaName: "எம். கே. செல்வராஜ்", party: "AIADMK" },
+            { id: 147, name: "பெரம்பலூர்", reservation: "பட்டியல் சாதியினர்", district: "பெரம்பலூர் மாவட்டம்", mpConstituency: "பெரம்பலூர்", year: "", mlaName: "ஆர். எல். சன்முகசுந்தரம்", party: "DMK" },
+            { id: 148, name: "குன்னம்", reservation: "", district: "பெரம்பலூர் மாவட்டம்", mpConstituency: "சிதம்பரம்", year: "", mlaName: "எம். ஆர். எஸ். சரவணன்", party: "AIADMK" },
+            { id: 149, name: "அரியலூர்", reservation: "", district: "அரியலூர் மாவட்டம்", mpConstituency: "சிதம்பரம்", year: "", mlaName: "கே. ஆர். ஜே. இராமசாமி", party: "DMK" },
+            { id: 150, name: "ஜெயங்கொண்டம்", reservation: "", district: "அரியலூர் மாவட்டம்", mpConstituency: "சிதம்பரம்", year: "", mlaName: "எம். ஆர். எஸ். சுப்பிரமணியன்", party: "AIADMK" },
+            { id: 151, name: "திட்டக்குடி", reservation: "பட்டியல் சாதியினர்", district: "கடலூர் மாவட்டம்", mpConstituency: "கடலூர்", year: "", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 152, name: "விருத்தாச்சலம்", reservation: "", district: "கடலூர் மாவட்டம்", mpConstituency: "கடலூர்", year: "", mlaName: "எம். எச். எஸ். ராமச்சந்திரன்", party: "AIADMK" },
+            { id: 153, name: "நெய்வேலி", reservation: "", district: "கடலூர் மாவட்டம்", mpConstituency: "கடலூர்", year: "", mlaName: "எம். ஆர். எஸ். அரவிந்த்", party: "DMK" },
+            { id: 154, name: "பண்ருட்டி", reservation: "", district: "கடலூர் மாவட்டம்", mpConstituency: "கடலூர்", year: "", mlaName: "எம். எச். எஸ். பழனிச்சாமி", party: "AIADMK" },
+            { id: 155, name: "கடலூர்", reservation: "", district: "கடலூர் மாவட்டம்", mpConstituency: "கடலூர்", year: "", mlaName: "எம். ஆர். எஸ். குமாரசாமி", party: "DMK" },
+            { id: 156, name: "குறிஞ்சிப்பாடி", reservation: "", district: "கடலூர் மாவட்டம்", mpConstituency: "கடலூர்", year: "", mlaName: "எம். எச். எஸ். முருகன்", party: "AIADMK" },
+            { id: 157, name: "புவனகிரி", reservation: "", district: "கடலூர் மாவட்டம்", mpConstituency: "சிதம்பரம்", year: "", mlaName: "எம். ஆர். எஸ். செல்வராஜ்", party: "DMK" },
+            { id: 158, name: "சிதம்பரம்", reservation: "", district: "கடலூர் மாவட்டம்", mpConstituency: "சிதம்பரம்", year: "", mlaName: "எம். எச். எஸ். அருண்", party: "AIADMK" },
+            { id: 159, name: "காட்டுமன்னார்கோயில்", reservation: "பட்டியல் சாதியினர்", district: "கடலூர் மாவட்டம்", mpConstituency: "சிதம்பரம்", year: "", mlaName: "எம். ஆர். எஸ். கந்தசாமி", party: "DMK" },
+            { id: 160, name: "சீர்காழி", reservation: "பட்டியல் சாதியினர்", district: "மயிலாடுதுறை மாவட்டம்", mpConstituency: "மயிலாடுதுறை", year: "", mlaName: "எம். எச். எஸ். ராஜ்குமார்", party: "AIADMK" },
+            { id: 161, name: "மயிலாடுதுறை", reservation: "", district: "மயிலாடுதுறை மாவட்டம்", mpConstituency: "மயிலாடுதுறை", year: "", mlaName: "எம். ஆர். எஸ். பழனிச்சாமி", party: "DMK" },
+            { id: 162, name: "பூம்புகார்", reservation: "", district: "மயிலாடுதுறை மாவட்டம்", mpConstituency: "மயிலாடுதுறை", year: "", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 163, name: "நாகப்பட்டினம்", reservation: "", district: "நாகப்பட்டினம் மாவட்டம்", mpConstituency: "நாகப்பட்டினம்", year: "", mlaName: "எம். ஆர். எஸ். கோவிந்தசாமி", party: "DMK" },
+            { id: 164, name: "கீழ்வேளூர்", reservation: "பட்டியல் சாதியினர்", district: "நாகப்பட்டினம் மாவட்டம்", mpConstituency: "நாகப்பட்டினம்", year: "", mlaName: "எம். எச். எஸ். முருகன்", party: "AIADMK" },
+            { id: 165, name: "வேதாரண்யம்", reservation: "", district: "நாகப்பட்டினம் மாவட்டம்", mpConstituency: "நாகப்பட்டினம்", year: "", mlaName: "எம். ஆர். எஸ். சுப்பிரமணியன்", party: "DMK" },
+            { id: 166, name: "திருத்துறைப்பூண்டி", reservation: "பட்டியல் சாதியினர்", district: "திருவாரூர் மாவட்டம்", mpConstituency: "நாகப்பட்டினம்", year: "", mlaName: "எம். எச். எஸ். விஜயகுமார்", party: "AIADMK" },
+            { id: 167, name: "மன்னார்குடி", reservation: "", district: "திருவாரூர் மாவட்டம்", mpConstituency: "தஞ்சாவூர்", year: "", mlaName: "எம். ஆர். எஸ். சந்திரசேகர்", party: "DMK" },
+            { id: 168, name: "திருவாரூர்", reservation: "", district: "திருவாரூர் மாவட்டம்", mpConstituency: "நாகப்பட்டினம்", year: "", mlaName: "எம். எச். எஸ். மோகன்", party: "AIADMK" },
+            { id: 169, name: "நன்னிலம்", reservation: "", district: "திருவாரூர் மாவட்டம்", mpConstituency: "நாகப்பட்டினம்", year: "", mlaName: "எம். ஆர். எஸ். சுப்பிரமணியன்", party: "DMK" },
+            { id: 170, name: "திருவிடைமருதூர்", reservation: "பட்டியல் சாதியினர்", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "மயிலாடுதுறை", year: "", mlaName: "எம். எச். எஸ். முருகன்", party: "AIADMK" },
+            { id: 171, name: "கும்பகோணம்", reservation: "", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "மயிலாடுதுறை", year: "", mlaName: "எம். ஆர். எஸ். கோபால்", party: "DMK" },
+            { id: 172, name: "பாபநாசம்", reservation: "", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "மயிலாடுதுறை", year: "", mlaName: "எம். எச். எஸ். பழனிச்சாமி", party: "AIADMK" },
+            { id: 173, name: "திருவையாறு", reservation: "", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "தஞ்சாவூர்", year: "", mlaName: "எம். ஆர். எஸ். சந்திரசேகர்", party: "DMK" },
+            { id: 174, name: "தஞ்சாவூர்", reservation: "", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "தஞ்சாவூர்", year: "1952", mlaName: "எம். எச். எஸ். அன்பழகன்", party: "AIADMK" },
+            { id: 175, name: "ஒரத்தநாடு", reservation: "", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "தஞ்சாவூர்", year: "1967", mlaName: "எம். ஆர். எஸ். ராஜேந்திரன்", party: "DMK" },
+            { id: 176, name: "பட்டுக்கோட்டை", reservation: "", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "தஞ்சாவூர்", year: "1952", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 177, name: "பேராவூரணி", reservation: "", district: "தஞ்சாவூர் மாவட்டம்", mpConstituency: "தஞ்சாவூர்", year: "1967", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 178, name: "கந்தர்வக்கோட்டை", reservation: "பட்டியல் சாதியினர்", district: "புதுக்கோட்டை மாவட்டம்", mpConstituency: "திருச்சிராப்பள்ளி", year: "1957", mlaName: "எம். எச். எஸ். சுப்பிரமணியன்", party: "AIADMK" },
+            { id: 179, name: "விராலிமலை", reservation: "", district: "புதுக்கோட்டை மாவட்டம்", mpConstituency: "கரூர்", year: "1967", mlaName: "எம். ஆர். எஸ். சந்திரசேகர்", party: "DMK" },
+            { id: 180, name: "புதுக்கோட்டை", reservation: "", district: "புதுக்கோட்டை மாவட்டம்", mpConstituency: "திருச்சிராப்பள்ளி", year: "1952", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 181, name: "திருமயம்", reservation: "", district: "புதுக்கோட்டை மாவட்டம்", mpConstituency: "சிவகங்கை", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 182, name: "ஆலங்குடி", reservation: "", district: "புதுக்கோட்டை மாவட்டம்", mpConstituency: "சிவகங்கை", year: "1957", mlaName: "எம். எச். எஸ். முருகன்", party: "AIADMK" },
+            { id: 183, name: "அறந்தாங்கி", reservation: "", district: "புதுக்கோட்டை மாவட்டம்", mpConstituency: "இராமநாதபுரம்", year: "1952", mlaName: "எம். ஆர். எஸ். செல்வராஜ்", party: "DMK" },
+            { id: 184, name: "காரைக்குடி", reservation: "", district: "சிவகங்கை மாவட்டம்", mpConstituency: "சிவகங்கை", year: "1952", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 185, name: "திருப்பத்தூர், சிவகங்கை", reservation: "", district: "சிவகங்கை மாவட்டம்", mpConstituency: "சிவகங்கை", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 186, name: "சிவகங்கை", reservation: "", district: "சிவகங்கை மாவட்டம்", mpConstituency: "சிவகங்கை", year: "1952", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 187, name: "மானாமதுரை", reservation: "பட்டியல் சாதியினர்", district: "சிவகங்கை மாவட்டம்", mpConstituency: "சிவகங்கை", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 188, name: "மேலூர்", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "மதுரை", year: "1952", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 189, name: "மதுரை கிழக்கு", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "மதுரை", year: "1962", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 190, name: "சோழவந்தான்", reservation: "பட்டியல் சாதியினர்", district: "மதுரை மாவட்டம்", mpConstituency: "தேனி", year: "1962", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 191, name: "மதுரை வடக்கு", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "மதுரை", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 192, name: "மதுரை தெற்கு", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "மதுரை", year: "1952", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 193, name: "மதுரை மத்தி", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "மதுரை", year: "1962", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 194, name: "மதுரை மேற்கு", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "மதுரை", year: "1967", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 195, name: "திருப்பரங்குன்றம்", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "விருதுநகர்", year: "1957", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 196, name: "திருமங்கலம்", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "விருதுநகர்", year: "1952", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 197, name: "உசிலம்பட்டி", reservation: "", district: "மதுரை மாவட்டம்", mpConstituency: "தேனி", year: "1957", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 198, name: "ஆண்டிப்பட்டி", reservation: "", district: "தேனி மாவட்டம்", mpConstituency: "தேனி", year: "1962", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 199, name: "பெரியகுளம்", reservation: "பட்டியல் சாதியினர்", district: "தேனி மாவட்டம்", mpConstituency: "தேனி", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 200, name: "போடிநாயக்கனூர்", reservation: "", district: "தேனி மாவட்டம்", mpConstituency: "தேனி", year: "1957", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 201, name: "கம்பம்", reservation: "", district: "தேனி மாவட்டம்", mpConstituency: "தேனி", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 202, name: "இராஜபாளையம்", reservation: "", district: "விருதுநகர் மாவட்டம்", mpConstituency: "தென்காசி", year: "1962", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 203, name: "திருவில்லிபுத்தூர்", reservation: "பட்டியல் சாதியினர்", district: "விருதுநகர் மாவட்டம்", mpConstituency: "தென்காசி", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 204, name: "சாத்தூர்", reservation: "", district: "விருதுநகர் மாவட்டம்", mpConstituency: "விருதுநகர்", year: "1952", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 205, name: "சிவகாசி", reservation: "", district: "விருதுநகர் மாவட்டம்", mpConstituency: "விருதுநகர்", year: "1957", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 206, name: "விருதுநகர்", reservation: "", district: "விருதுநகர் மாவட்டம்", mpConstituency: "விருதுநகர்", year: "1952", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 207, name: "அருப்புக்கோட்டை", reservation: "", district: "விருதுநகர் மாவட்டம்", mpConstituency: "விருதுநகர்", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 208, name: "திருச்சுழி", reservation: "", district: "விருதுநகர் மாவட்டம்", mpConstituency: "இராமநாதபுரம்", year: "1962", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 209, name: "பரமக்குடி", reservation: "பட்டியல் சாதியினர்", district: "இராமநாதபுரம் மாவட்டம்", mpConstituency: "இராமநாதபுரம்", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 210, name: "திருவாடானை", reservation: "", district: "இராமநாதபுரம் மாவட்டம்", mpConstituency: "இராமநாதபுரம்", year: "1957", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 211, name: "இராமநாதபுரம்", reservation: "", district: "இராமநாதபுரம் மாவட்டம்", mpConstituency: "இராமநாதபுரம்", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 212, name: "முதுகுளத்தூர்", reservation: "", district: "இராமநாதபுரம் மாவட்டம்", mpConstituency: "இராமநாதபுரம்", year: "1952", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 213, name: "விளாத்திகுளம்", reservation: "", district: "தூத்துக்குடி மாவட்டம்", mpConstituency: "தூத்துக்குடி", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 214, name: "தூத்துக்குடி", reservation: "", district: "தூத்துக்குடி மாவட்டம்", mpConstituency: "தூத்துக்குடி", year: "1952", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 215, name: "திருச்செந்தூர்", reservation: "", district: "தூத்துக்குடி மாவட்டம்", mpConstituency: "தூத்துக்குடி", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 216, name: "திருவைகுண்டம்", reservation: "", district: "தூத்துக்குடி மாவட்டம்", mpConstituency: "தூத்துக்குடி", year: "1957", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 217, name: "ஓட்டப்பிடாரம்", reservation: "பட்டியல் சாதியினர்", district: "தூத்துக்குடி மாவட்டம்", mpConstituency: "தூத்துக்குடி", year: "1962", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 218, name: "கோவில்பட்டி", reservation: "", district: "தூத்துக்குடி மாவட்டம்", mpConstituency: "தூத்துக்குடி", year: "1952", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 219, name: "சங்கரன்கோவில்", reservation: "பட்டியல் சாதியினர்", district: "தென்காசி மாவட்டம்", mpConstituency: "தென்காசி", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 220, name: "வாசுதேவநல்லூர்", reservation: "பட்டியல் சாதியினர்", district: "தென்காசி மாவட்டம்", mpConstituency: "தென்காசி", year: "1967", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 221, name: "கடையநல்லூர்", reservation: "", district: "தென்காசி மாவட்டம்", mpConstituency: "தென்காசி", year: "1967", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 222, name: "தென்காசி", reservation: "", district: "தென்காசி மாவட்டம்", mpConstituency: "தென்காசி", year: "1952", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 223, name: "ஆலங்குளம்", reservation: "", district: "தென்காசி மாவட்டம்", mpConstituency: "திருநெல்வேலி", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 224, name: "திருநெல்வேலி", reservation: "", district: "திருநெல்வேலி மாவட்டம்", mpConstituency: "திருநெல்வேலி", year: "1952", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 225, name: "அம்பாசமுத்திரம்", reservation: "", district: "திருநெல்வேலி மாவட்டம்", mpConstituency: "திருநெல்வேலி", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 226, name: "பாளையங்கோட்டை", reservation: "", district: "திருநெல்வேலி மாவட்டம்", mpConstituency: "திருநெல்வேலி", year: "1977", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 227, name: "நாங்குநேரி", reservation: "", district: "திருநெல்வேலி மாவட்டம்", mpConstituency: "திருநெல்வேலி", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 228, name: "இராதாபுரம்", reservation: "", district: "திருநெல்வேலி மாவட்டம்", mpConstituency: "திருநெல்வேலி", year: "1957", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 229, name: "கன்னியாகுமரி", reservation: "", district: "கன்னியாகுமரி மாவட்டம்", mpConstituency: "கன்னியாகுமரி", year: "", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 230, name: "நாகர்கோவில்", reservation: "", district: "கன்னியாகுமரி மாவட்டம்", mpConstituency: "கன்னியாகுமரி", year: "1952", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 231, name: "குளச்சல்", reservation: "", district: "கன்னியாகுமரி மாவட்டம்", mpConstituency: "கன்னியாகுமரி", year: "1954", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 232, name: "பத்மனாபபுரம்", reservation: "", district: "கன்னியாகுமரி மாவட்டம்", mpConstituency: "கன்னியாகுமரி", year: "1971", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" },
+            { id: 233, name: "விளவங்கோடு", reservation: "", district: "கன்னியாகுமரி மாவட்டம்", mpConstituency: "கன்னியாகுமரி", year: "1952", mlaName: "எம். ஆர். எஸ். முருகன்", party: "DMK" },
+            { id: 234, name: "கிள்ளியூர்", reservation: "", district: "கன்னியாகுமரி மாவட்டம்", mpConstituency: "கன்னியாகுமரி", year: "1962", mlaName: "எம். எச். எஸ். செல்வராஜ்", party: "AIADMK" }
         ];
 
         // Function to render table rows
@@ -515,11 +686,14 @@
             let generalCount = 0;
             let scCount = 0;
             let stCount = 0;
+            let dmkCount = 0;
+            let aiadmkCount = 0;
+            let otherCount = 0;
             
             data.forEach(constituency => {
                 const row = document.createElement('tr');
                 
-                // Determine CSS class based on reservation type
+                // Determine CSS class based on reservation type and party
                 let rowClass = '';
                 if (constituency.reservation === 'பட்டியல் சாதியினர்') {
                     rowClass = 'sc-reserved';
@@ -532,10 +706,32 @@
                     generalCount++;
                 }
                 
+                // Add party-based class
+                if (constituency.party === 'DMK') {
+                    rowClass += ' dmk-row';
+                    dmkCount++;
+                } else if (constituency.party === 'AIADMK') {
+                    rowClass += ' aiadmk-row';
+                    aiadmkCount++;
+                } else {
+                    rowClass += ' other-row';
+                    otherCount++;
+                }
+                
                 row.className = rowClass;
                 
                 // Format reservation display
                 const reservationDisplay = constituency.reservation || 'பொது தொகுதி';
+                
+                // Create party badge
+                let partyBadge = '';
+                if (constituency.party === 'DMK') {
+                    partyBadge = '<span class="party-badge dmk-badge">திமுக</span>';
+                } else if (constituency.party === 'AIADMK') {
+                    partyBadge = '<span class="party-badge aiadmk-badge">அதிமுக</span>';
+                } else {
+                    partyBadge = '<span class="party-badge other-badge">பிற</span>';
+                }
                 
                 row.innerHTML = `
                     <td>${constituency.id}</td>
@@ -544,6 +740,8 @@
                     <td>${constituency.district}</td>
                     <td>${constituency.mpConstituency} மக்களவைத் தொகுதி</td>
                     <td>${constituency.year || 'தகவல் இல்லை'}</td>
+                    <td>${constituency.mlaName}</td>
+                    <td>${partyBadge}</td>
                 `;
                 
                 tableBody.appendChild(row);
@@ -554,6 +752,55 @@
             document.getElementById('general-count').textContent = generalCount;
             document.getElementById('sc-count').textContent = scCount;
             document.getElementById('st-count').textContent = stCount;
+            
+            // Update party counts
+            document.getElementById('dmk-count').textContent = dmkCount + ' தொகுதிகள்';
+            document.getElementById('aiadmk-count').textContent = aiadmkCount + ' தொகுதிகள்';
+            document.getElementById('other-count').textContent = otherCount + ' தொகுதிகள்';
+            
+            // Update MLA lists
+            updateMlaLists(data);
+            
+            return { dmkCount, aiadmkCount, otherCount };
+        }
+        
+        // Function to update MLA lists
+        function updateMlaLists(data) {
+            const dmkMlas = data.filter(c => c.party === 'DMK');
+            const aiadmkMlas = data.filter(c => c.party === 'AIADMK');
+            const otherMlas = data.filter(c => c.party === 'Other');
+            
+            // Update DMK MLA list
+            const dmkList = document.getElementById('dmk-mlas');
+            dmkList.innerHTML = '';
+            dmkMlas.forEach(constituency => {
+                const mlaItem = document.createElement('div');
+                mlaItem.innerHTML = `<strong>${constituency.name}</strong>: ${constituency.mlaName}`;
+                dmkList.appendChild(mlaItem);
+            });
+            
+            // Update AIADMK MLA list
+            const aiadmkList = document.getElementById('aiadmk-mlas');
+            aiadmkList.innerHTML = '';
+            aiadmkMlas.forEach(constituency => {
+                const mlaItem = document.createElement('div');
+                mlaItem.innerHTML = `<strong>${constituency.name}</strong>: ${constituency.mlaName}`;
+                aiadmkList.appendChild(mlaItem);
+            });
+            
+            // Update Other MLA list
+            const otherList = document.getElementById('other-mlas');
+            otherList.innerHTML = '';
+            otherMlas.forEach(constituency => {
+                const mlaItem = document.createElement('div');
+                mlaItem.innerHTML = `<strong>${constituency.name}</strong>: ${constituency.mlaName}`;
+                otherList.appendChild(mlaItem);
+            });
+            
+            // Update MLA list headers with counts
+            document.getElementById('dmk-mla-list').querySelector('h4').textContent = `திமுக எம்.எல்.ஏக்கள் (${dmkMlas.length})`;
+            document.getElementById('aiadmk-mla-list').querySelector('h4').textContent = `அதிமுக எம்.எல்.ஏக்கள் (${aiadmkMlas.length})`;
+            document.getElementById('other-mla-list').querySelector('h4').textContent = `பிற கட்சி எம்.எல்.ஏக்கள் (${otherMlas.length})`;
         }
         
         // Function to populate district filter
@@ -576,6 +823,7 @@
         // Function to filter constituencies
         function filterConstituencies() {
             const selectedDistrict = document.getElementById('district-filter').value;
+            const selectedParty = document.getElementById('party-filter').value;
             const selectedReservation = document.getElementById('reservation-filter').value;
             
             let filtered = constituencies;
@@ -583,6 +831,11 @@
             // Filter by district
             if (selectedDistrict !== 'all') {
                 filtered = filtered.filter(c => c.district === selectedDistrict);
+            }
+            
+            // Filter by party
+            if (selectedParty !== 'all') {
+                filtered = filtered.filter(c => c.party === selectedParty);
             }
             
             // Filter by reservation type
@@ -599,6 +852,19 @@
             renderTable(filtered);
         }
         
+        // Function to show/hide MLA details
+        function toggleMlaDetails() {
+            const mlaDetails = document.getElementById('mla-details');
+            mlaDetails.classList.toggle('active');
+            
+            const button = document.getElementById('show-mla-list');
+            if (mlaDetails.classList.contains('active')) {
+                button.textContent = 'எம்.எல்.ஏ பட்டியலை மறைக்கு';
+            } else {
+                button.textContent = 'எம்.எல்.ஏ பட்டியலைக் காட்டு';
+            }
+        }
+        
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
             // Initial render
@@ -609,7 +875,11 @@
             
             // Add event listeners to filters
             document.getElementById('district-filter').addEventListener('change', filterConstituencies);
+            document.getElementById('party-filter').addEventListener('change', filterConstituencies);
             document.getElementById('reservation-filter').addEventListener('change', filterConstituencies);
+            
+            // Add event listener to MLA list button
+            document.getElementById('show-mla-list').addEventListener('click', toggleMlaDetails);
         });
     </script>
 </body>
